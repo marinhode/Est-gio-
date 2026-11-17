@@ -1,5 +1,8 @@
 -- Laboratório Sensorial Interativo · esquema do banco (Supabase / Postgres)
 -- Rodar no SQL Editor do Supabase. Espelha src/lib/tipos.ts.
+-- Aplicado em 17/11/2026 no projeto hmmrthhwchefxwshpphl (us-east-1).
+-- Regras de RLS testadas como visitante anônimo: lê só conteúdo publicado,
+-- registra respostas sem conseguir lê-las, não escreve conteúdo.
 --
 -- Regras de acesso (RLS):
 --   visitante (anon)       → lê só conteúdo publicado; pode registrar respostas e acessos
