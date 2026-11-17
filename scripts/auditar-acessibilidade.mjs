@@ -20,6 +20,7 @@ const REGRAS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-pr
 const rotas = [
   '/', '/sentidos', '/sentidos/memoria-olfativa', '/sentidos/atencao-plena', '/sentidos/diario',
   '/jogos', '/jogos/mitos-e-verdades', '/tour', '/plantas', '/ciencia', '/comunidade', '/mapa', '/acessibilidade',
+  '/admin/entrar',
 ]
 
 // Estados interativos que também precisam ser verificados

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 /** Atualizar a cada nova auditoria (ver docs/acessibilidade.md). */
 const auditoria = {
   data: '17/11/2026',
-  paginas: 13,
+  paginas: 14,
   combinacoes: 'tema claro, tema escuro e alto contraste',
   falhas: 0,
 }

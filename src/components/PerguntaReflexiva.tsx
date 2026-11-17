@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useId, useState } from 'react'
 import { useDiario } from '@/lib/diario'
+import { registrarResposta } from '@/lib/registro'
 
 /**
  * Pergunta aberta, sem resposta certa (orientação 3.2).
@@ -18,6 +19,8 @@ export function PerguntaReflexiva({ pergunta, sobre }: { pergunta: string; sobre
     e.preventDefault()
     if (!texto.trim()) return
     const ok = adicionar({ sobre, sentidos: [], pergunta, resposta: texto.trim() })
+    // Envio anônimo para a equipe; se falhar, a resposta continua no diário
+    registrarResposta(pergunta, texto).catch(() => {})
     setResultado(ok ? 'guardado' : 'erro')
     if (ok) setTexto('')
   }
@@ -38,6 +41,10 @@ export function PerguntaReflexiva({ pergunta, sobre }: { pergunta: string; sobre
         maxLength={500}
         placeholder="Escreva o que vier à cabeça. Pode ser uma palavra só."
       />
+      <p className="nota">
+        A resposta fica no seu diário e também é enviada, sem nenhuma identificação, para a equipe de Psicologia ver as
+        respostas em conjunto.
+      </p>
       <div className="flex flex-wrap gap-2">
         <button type="submit" className="btn btn-lavanda" disabled={!texto.trim()}>
           Guardar no meu diário
@@ -49,7 +56,7 @@ export function PerguntaReflexiva({ pergunta, sobre }: { pergunta: string; sobre
       <p role="status" className="c-sinta font-bold">
         {resultado === 'guardado' && (
           <>
-            Guardado. Só você vê o seu diário. <Link href="/sentidos/diario">Abrir o diário</Link>
+            Guardado no seu diário e enviado à equipe, sem identificação. <Link href="/sentidos/diario">Abrir o diário</Link>
           </>
         )}
         {resultado === 'pulado' && 'Tudo bem. Você pode voltar a esta pergunta quando quiser.'}

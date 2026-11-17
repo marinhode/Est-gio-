@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { Icone } from '@/components/Icone'
+import { registrarEvento } from '@/lib/registro'
 import type { Jogo } from '@/lib/tipos'
 
 type Modo = 'individual' | 'turma'
@@ -63,6 +64,7 @@ export function JogoInterativo({ jogo }: { jogo: Jogo }) {
 
   function seguir() {
     if (indice + 1 >= total) {
+      registrarEvento('quiz_concluido', jogo.slug).catch(() => {})
       setFase('fim')
       return
     }
