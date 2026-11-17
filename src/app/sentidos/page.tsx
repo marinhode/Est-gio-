@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Icone } from '@/components/Icone'
-import { temas } from '@/lib/dados/sentidos'
+import { listarTemas } from '@/lib/conteudo'
 
 export const metadata: Metadata = {
   title: 'Experiências sensoriais',
@@ -12,7 +12,8 @@ function minutos(segundos: number) {
   return segundos < 60 ? `${segundos} s` : `${Math.round(segundos / 60)} min`
 }
 
-export default function Sentidos() {
+export default async function Sentidos() {
+  const temas = await listarTemas()
   return (
     <div className="largura gutter grid gap-12 py-12">
       <header className="grid gap-4">

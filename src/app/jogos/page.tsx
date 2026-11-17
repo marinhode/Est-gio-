@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Icone } from '@/components/Icone'
-import { jogos } from '@/lib/dados/jogos'
+import { listarJogos } from '@/lib/conteudo'
 
 export const metadata: Metadata = {
   title: 'Jogos e desafios',
@@ -13,7 +13,8 @@ const emBreve = [
   { titulo: 'Que folha é essa?', texto: 'Associe cada folha à sua planta pela forma e pela textura.' },
 ]
 
-export default function Jogos() {
+export default async function Jogos() {
+  const jogos = await listarJogos()
   return (
     <div className="largura gutter grid gap-12 py-12">
       <header className="grid gap-4">

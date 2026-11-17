@@ -4,19 +4,19 @@ import { notFound } from 'next/navigation'
 import { AvisoExemplo } from '@/components/AvisoExemplo'
 import { Icone } from '@/components/Icone'
 import { JogoInterativo } from '@/components/JogoInterativo'
-import { jogos, obterJogo } from '@/lib/dados/jogos'
+import { listarJogos, obterJogo } from '@/lib/conteudo'
 
-export function generateStaticParams() {
-  return jogos.map((j) => ({ jogo: j.slug }))
+export async function generateStaticParams() {
+  return (await listarJogos()).map((j) => ({ jogo: j.slug }))
 }
 
 export async function generateMetadata({ params }: PageProps<'/jogos/[jogo]'>): Promise<Metadata> {
-  const jogo = obterJogo((await params).jogo)
+  const jogo = await obterJogo((await params).jogo)
   return jogo ? { title: jogo.titulo, description: jogo.descricao } : {}
 }
 
 export default async function PaginaJogo({ params }: PageProps<'/jogos/[jogo]'>) {
-  const jogo = obterJogo((await params).jogo)
+  const jogo = await obterJogo((await params).jogo)
   if (!jogo) notFound()
 
   return (

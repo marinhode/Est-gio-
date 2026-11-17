@@ -5,21 +5,22 @@ import { AtividadeGuiada } from '@/components/AtividadeGuiada'
 import { AvisoExemplo } from '@/components/AvisoExemplo'
 import { Icone } from '@/components/Icone'
 import { PerguntaReflexiva } from '@/components/PerguntaReflexiva'
-import { obterTema, temas } from '@/lib/dados/sentidos'
+import { listarTemas, obterTema } from '@/lib/conteudo'
 
-export function generateStaticParams() {
-  return temas.map((t) => ({ tema: t.slug }))
+export async function generateStaticParams() {
+  return (await listarTemas()).map((t) => ({ tema: t.slug }))
 }
 
 export async function generateMetadata({ params }: PageProps<'/sentidos/[tema]'>): Promise<Metadata> {
-  const tema = obterTema((await params).tema)
+  const tema = await obterTema((await params).tema)
   return tema ? { title: tema.titulo, description: tema.resumo } : {}
 }
 
 export default async function Tema({ params }: PageProps<'/sentidos/[tema]'>) {
-  const tema = obterTema((await params).tema)
+  const tema = await obterTema((await params).tema)
   if (!tema) notFound()
 
+  const temas = await listarTemas()
   const i = temas.findIndex((t) => t.slug === tema.slug)
   const proximo = temas[(i + 1) % temas.length]
 

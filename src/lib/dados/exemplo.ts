@@ -1,3 +1,4 @@
+/** Fonte da carga inicial do banco (scripts/gerar-semente.ts). O site lê do Supabase, não deste arquivo. */
 import type { Canteiro, Planta } from '@/lib/tipos'
 
 /**
