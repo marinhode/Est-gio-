@@ -6,7 +6,7 @@ Documento construído por partes. Cada parte só avança após aprovação.
 |---|---|---|
 | 1 | Visão e proposta | ✅ Aprovada |
 | 2 | Públicos e personas | ✅ Aprovada |
-| 3 | Jornadas | 🟡 Em discussão |
+| 3 | Jornadas | ✅ Aprovada (1 ponto em aberto: acesso ao painel) |
 | 4 | Arquitetura da informação | ⏳ |
 | 5 | Identidade e tom | ⏳ |
 | 6 | Escopo final | ⏳ |
@@ -53,7 +53,7 @@ Em qualquer ponto do sistema (QR, mapa, tour, catálogo), a planta se abre em:
 
 ---
 
-## Parte 3 — Jornadas (rascunho, em discussão)
+## Parte 3 — Jornadas
 
 ### Jornada 1 — Ana escaneia o QR (a principal)
 1. Vê a placa do canteiro com o QR e o nome da planta, e aponta a câmera.
@@ -91,15 +91,21 @@ Em qualquer ponto do sistema (QR, mapa, tour, catálogo), a planta se abre em:
 **Exige:** HTML semântico, tour com versão alternativa, cor nunca como única informação.
 
 ### Jornada 5 — Júlia atualiza uma ficha
-1. Entra em `/admin` com e-mail e senha.
+1. Entra no painel de conteúdo (forma de acesso: ver decisões).
 2. Plantas → Hortelã. Formulário segue as **10 seções** da ficha padrão.
 3. Edita texto curto e ampliado, sobe foto (alt obrigatório), adiciona fonte.
 4. Marca a revisão: nome e data registrados automaticamente.
 5. Salva como **rascunho** ou **publica**. URL e QR não mudam.
 
-**Exige:** login só para editores, campos obrigatórios, rascunho/publicado, revisor e data automáticos.
+**Exige:** campos obrigatórios, rascunho/publicado, "validado por" + área e data automáticos.
 
-### Decisões pendentes
-1. **Visitante sem login em tudo?** Sugestão: sim. Quiz e pergunta sensorial anônimos; progresso salvo só no aparelho.
-2. **Respostas sensoriais ficam salvas?** Sugestão: sim, anônimas, para a Psicologia ver respostas agregadas.
-3. **Papéis de edição:** editor + revisor, ou um papel só?
+### Decisões
+1. **Sem login de usuário.** Visitantes não criam conta em nenhum momento. Quiz, pergunta sensorial e diário são anônimos; progresso (trilhas) fica só no aparelho.
+2. **Respostas sensoriais salvas de forma anônima**, para a Psicologia ver dados agregados (atende o "painel de acompanhamento", 4.2).
+3. **Sem papéis nem fluxo de aprovação.** Cada ficha registra "validado por", a área (Botânica, Psicologia, Biomedicina, Farmácia) e a data, atendendo a exigência de validação por área (3.3).
+4. ⏳ **Acesso ao painel de conteúdo:** em aberto.
+
+### Ajustes após leitura do documento de orientações
+- **Tour é o diferencial avaliado** (seção 5). O QR continua sendo a entrada principal de uso, mas o tour recebe mais tempo e acabamento.
+- **"Estações" ≠ "paradas".** Estações são as 6 seções da plataforma; paradas são as 5 etapas do tour.
+- **Obrigatórios que estavam como opcionais:** pelo menos uma pergunta interativa por ficha; espaço para diário sensorial e atenção plena; caminhos no mapa.
