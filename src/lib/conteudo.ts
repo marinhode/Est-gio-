@@ -1,7 +1,7 @@
 import 'server-only'
 import { cacheTag } from 'next/cache'
 import { clienteAnonimo } from '@/lib/supabase/servidor'
-import type { Canteiro, Fonte, Jogo, NivelEvidencia, Planta, Secao, TemaSensorial } from '@/lib/tipos'
+import type { Canteiro, Fonte, Jogo, NivelEvidencia, Planta, Projeto, Secao, TemaSensorial } from '@/lib/tipos'
 
 /**
  * Ponto único de leitura do conteúdo público, vindo do Supabase.
@@ -165,4 +165,19 @@ export async function listarTemas(): Promise<TemaSensorial[]> {
 
 export async function obterTema(slug: string): Promise<TemaSensorial | null> {
   return (await listarTemas()).find((t) => t.slug === slug) ?? null
+}
+
+// ───────────── Projetos acadêmicos ─────────────
+
+export async function listarProjetos(): Promise<Projeto[]> {
+  'use cache'
+  cacheTag(ETIQUETA)
+  const { data, error } = await clienteAnonimo()
+    .from('projetos')
+    .select('id, curso, tipo, titulo, descricao, link, ano, publicado')
+    .eq('publicado', true)
+    .order('ano', { ascending: false, nullsFirst: false })
+    .order('titulo')
+  if (error) falhou('os projetos', error)
+  return data.map((p) => ({ ...p, link: p.link ?? undefined, ano: p.ano ?? undefined }))
 }

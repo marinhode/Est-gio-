@@ -126,12 +126,13 @@ em.cientifico, .cientifico { font-style: italic; }
 .trilho::-webkit-scrollbar { display: none; }
 .trilho > li { flex: none; scroll-snap-align: start; }
 .chip {
+  font: inherit; cursor: pointer;
   display: inline-flex; align-items: center; gap: .4rem; min-height: 44px; padding: .35rem 1rem;
   border-radius: 999px; border: 1.5px solid var(--linha); background: var(--papel); color: var(--tinta);
   font-weight: 700; text-decoration: none; white-space: nowrap;
 }
 .chip:hover { border-color: var(--azul); color: var(--azul); }
-.chip[aria-current="page"] { background: var(--azul); border-color: var(--azul); color: var(--sobre-azul); }
+.chip[aria-current="page"], .chip[aria-pressed="true"] { background: var(--azul); border-color: var(--azul); color: var(--sobre-azul); }
 .sombra { position: absolute; top: 0; bottom: 0; width: 2.75rem; pointer-events: none; opacity: 0; transition: opacity .2s; }
 .sombra-inicio { left: 0; background: linear-gradient(to right, var(--superficie) 30%, transparent); }
 .sombra-fim { right: 0; background: linear-gradient(to left, var(--superficie) 30%, transparent); }

@@ -41,7 +41,7 @@ async function Painel() {
     { titulo: 'Plantas e canteiros', icone: 'livro', href: '/admin/plantas' },
     { titulo: 'Paradas do tour', icone: 'tour' },
     { titulo: 'Perguntas dos jogos', icone: 'jogos', href: '/admin/jogos' },
-    { titulo: 'Projetos acadêmicos', icone: 'pessoas' },
+    { titulo: 'Projetos acadêmicos', icone: 'pessoas', href: '/admin/projetos' },
     { titulo: 'Textos das estações', icone: 'aroma' },
   ]
 

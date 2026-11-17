@@ -119,3 +119,15 @@ export type Jogo = {
   perguntas: PerguntaJogo[]
   exemplo: boolean
 }
+
+/** Produção acadêmica dos cursos (estação Comunidade). */
+export type Projeto = {
+  id: number
+  curso: string
+  tipo: string
+  titulo: string
+  descricao: string
+  link?: string
+  ano?: number
+  publicado: boolean
+}
