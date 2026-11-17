@@ -172,8 +172,8 @@ Cada seção mostra o texto curto e um botão "Ler mais" para a explicação amp
 | "Resposta errada!" (no quiz) | "Quase! Veja por quê…" |
 
 ### Visual
-- **Cor principal: azul UniCatólica** (#23409A). Faixa do topo com o logo, botões e links, para o usuário reconhecer a instituição ao abrir. O azul-claro da marca (#0095DA) aparece só em detalhes decorativos (contraste insuficiente para texto).
-- **Cores da horta em segundo plano**, uma por caminho: 🌱 Conheça verde-folha · 👃 Sinta lavanda · 🔬 Ciência azul-ciência (azul-claro da marca escurecido). Destaque em amarelo-camomila, sempre atrás de texto escuro.
+- **Cor principal: azul UniCatólica** (#23409A). Faixa do topo com o logo, botões e links, para o usuário reconhecer a instituição ao abrir. O azul-claro da marca (#0095DA) é a cor de destaque (curiosidades, avisos) e da linha sob a faixa; sempre com texto escuro (4,7:1), nunca com texto branco (3,3:1).
+- **Cores da horta em segundo plano**, uma por caminho: 🌱 Conheça verde-folha · 👃 Sinta lavanda · 🔬 Ciência azul-ciência (azul-claro da marca escurecido).
 - **Conceito de herbário:** fundo cor de papel, ilustração botânica de apoio, foto real como protagonista e **etiqueta de herbário** no fim da ficha (família, espécie, canteiro, validado por, data).
 - **Tipografia:** Young Serif nos títulos; Atkinson Hyperlegible no texto (criada para baixa visão); nomes científicos sempre em itálico.
 - **Selos de evidência:** ícone + texto + cor, nunca só cor (hipótese com borda tracejada).

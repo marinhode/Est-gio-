@@ -19,8 +19,8 @@
   --folha: #2E5B39;      /* caminho Conheça */
   --lavanda: #5E4E8C;    /* caminho Sinta */
   --ciencia: #00669B;    /* caminho Ciência: azul-claro da marca escurecido para leitura */
-  --camomila: #E9BC3A;   /* destaque, sempre atrás de texto escuro */
-  --sobre-camomila: #1A2433;
+  --destaque: #0095DA;   /* azul-claro UniCatólica como fundo de destaque, sempre com texto escuro (4,7:1) */
+  --sobre-destaque: #1A2433;
   --sobre-folha: #FFFFFF;
   --foco: #23409A;
   --f-titulo: "Young Serif", Georgia, "Times New Roman", serif;
@@ -30,33 +30,33 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --papel: #10151F; --superficie: #18202C; --tinta: #E6EAF0; --suave: #A7B1BF; --linha: #2E3A4A;
-    --azul: #9DB2F2; --sobre-azul: #10151F; --folha: #8FCB9C; --lavanda: #BBAAE6; --ciencia: #6CC6F2; --camomila: #E9C55E;
-    --sobre-camomila: #1A2433; --sobre-folha: #10151F; --foco: #9DB2F2; color-scheme: dark;
+    --azul: #9DB2F2; --sobre-azul: #10151F; --folha: #8FCB9C; --lavanda: #BBAAE6; --ciencia: #6CC6F2;
+    --sobre-folha: #10151F; --foco: #9DB2F2; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --papel: #10151F; --superficie: #18202C; --tinta: #E6EAF0; --suave: #A7B1BF; --linha: #2E3A4A;
-    --azul: #9DB2F2; --sobre-azul: #10151F; --folha: #8FCB9C; --lavanda: #BBAAE6; --ciencia: #6CC6F2; --camomila: #E9C55E;
-    --sobre-camomila: #1A2433; --sobre-folha: #10151F; --foco: #9DB2F2; color-scheme: dark;
+    --azul: #9DB2F2; --sobre-azul: #10151F; --folha: #8FCB9C; --lavanda: #BBAAE6; --ciencia: #6CC6F2;
+    --sobre-folha: #10151F; --foco: #9DB2F2; color-scheme: dark;
 }
 /* Modos do botão Aa (vêm por último para vencer o tema) */
 :root[data-letra="grande"] { font-size: 137.5%; }
 :root[data-contraste="alto"] {
   --papel: #FFFFFF; --superficie: #FFFFFF; --tinta: #000000; --suave: #1A1A1A; --linha: #000000; --marca: #14286E;
-  --azul: #14286E; --sobre-azul: #FFFFFF; --folha: #00461A; --lavanda: #3A1F78; --ciencia: #003D5E; --camomila: #FFD23F;
-  --sobre-camomila: #000000; --sobre-folha: #FFFFFF; --foco: #000000; color-scheme: light;
+  --azul: #14286E; --sobre-azul: #FFFFFF; --folha: #00461A; --lavanda: #3A1F78; --ciencia: #003D5E;
+  --sobre-destaque: #000000; --sobre-folha: #FFFFFF; --foco: #000000; color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
   :root[data-contraste="alto"]:not([data-theme="light"]) {
     --papel: #000000; --superficie: #000000; --tinta: #FFFFFF; --suave: #F0F0F0; --linha: #FFFFFF; --marca: #14286E;
-    --azul: #C2D0FF; --sobre-azul: #000000; --folha: #9DF2B0; --lavanda: #D9CCFF; --ciencia: #A6E6FF; --camomila: #FFD23F;
-    --sobre-camomila: #000000; --sobre-folha: #000000; --foco: #FFFFFF; color-scheme: dark;
+    --azul: #C2D0FF; --sobre-azul: #000000; --folha: #9DF2B0; --lavanda: #D9CCFF; --ciencia: #A6E6FF;
+    --sobre-destaque: #000000; --sobre-folha: #000000; --foco: #FFFFFF; color-scheme: dark;
   }
 }
 :root[data-theme="dark"][data-contraste="alto"] {
   --papel: #000000; --superficie: #000000; --tinta: #FFFFFF; --suave: #F0F0F0; --linha: #FFFFFF; --marca: #14286E;
-    --azul: #C2D0FF; --sobre-azul: #000000; --folha: #9DF2B0; --lavanda: #D9CCFF; --ciencia: #A6E6FF; --camomila: #FFD23F;
-    --sobre-camomila: #000000; --sobre-folha: #000000; --foco: #FFFFFF; color-scheme: dark;
+    --azul: #C2D0FF; --sobre-azul: #000000; --folha: #9DF2B0; --lavanda: #D9CCFF; --ciencia: #A6E6FF;
+    --sobre-destaque: #000000; --sobre-folha: #000000; --foco: #FFFFFF; color-scheme: dark;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -98,7 +98,7 @@ svg.ico { width: 1.25em; height: 1.25em; flex: none; }
 }
 .aa button[aria-pressed="true"] { background: #FFFFFF; color: var(--marca); border-color: #FFFFFF; }
 .aa .letra { font-family: var(--f-titulo); font-size: 1.05rem; }
-.faixa :focus-visible { outline-color: var(--camomila); }
+.faixa :focus-visible { outline-color: #FFFFFF; }
 
 /* Ficha de exemplo */
 .ficha { background: var(--superficie); border: 1px solid var(--linha); border-radius: 6px; overflow: clip; }
@@ -110,7 +110,7 @@ svg.ico { width: 1.25em; height: 1.25em; flex: none; }
 .ficha-id .nomes { display: grid; gap: .1rem; }
 .ficha-id .cientifico { color: var(--suave); font-size: 1.05rem; }
 .canteiro { display: inline-flex; align-items: center; gap: .35rem; font-size: .9rem; color: var(--folha); font-weight: 700; text-decoration: none; }
-.curiosidade { background: var(--camomila); color: var(--sobre-camomila); padding: .75rem 1rem; border-radius: 4px; }
+.curiosidade { background: var(--destaque); color: var(--sobre-destaque); padding: .75rem 1rem; border-radius: 4px; }
 @media (min-width: 720px) { .ficha-topo { grid-template-columns: 1fr 1fr; } .foto { aspect-ratio: auto; min-height: 100%; } }
 
 .caminhos { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--superficie); border-block: 1px solid var(--linha); display: grid; grid-template-columns: repeat(3, 1fr); }
@@ -328,12 +328,11 @@ details p { margin-top: .25rem; }
       </header>
       <div class="cores">
         <div class="cor"><div class="amostra" style="background:var(--marca)"></div><b>Azul UniCatólica</b><span>Faixa da marca, botões e links, 8,4:1</span></div>
-        <div class="cor"><div class="amostra" style="background:var(--marca-claro)"></div><b>Azul-claro UniCatólica</b><span>Só detalhes decorativos</span></div>
+        <div class="cor"><div class="amostra" style="background:var(--destaque)"></div><b>Azul-claro UniCatólica</b><span>Destaques e curiosidades, sempre com texto escuro, 4,7:1</span></div>
         <div class="cor"><div class="amostra" style="background:var(--tinta)"></div><b>Tinta</b><span>Texto, 14,1:1</span></div>
         <div class="cor"><div class="amostra" style="background:var(--folha)"></div><b>Folha</b><span>Conheça, 7,1:1</span></div>
         <div class="cor"><div class="amostra" style="background:var(--lavanda)"></div><b>Lavanda</b><span>Sinta, 6,5:1</span></div>
         <div class="cor"><div class="amostra" style="background:var(--ciencia)"></div><b>Azul-ciência</b><span>Ciência, 5,6:1</span></div>
-        <div class="cor"><div class="amostra" style="background:var(--camomila)"></div><b>Camomila</b><span>Destaque, só atrás de texto escuro</span></div>
         <div class="cor"><div class="amostra" style="background:var(--papel)"></div><b>Papel</b><span>Fundo da página</span></div>
       </div>
       <p class="nota">Valores medidos no tema claro. O tema escuro e o alto contraste têm versões próprias de cada cor.</p>
