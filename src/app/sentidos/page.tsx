@@ -48,7 +48,7 @@ export default function Sentidos() {
             )
           })}
           <li className="border-t border-linha">
-            <Link href="/jogos" className="group grid gap-1.5 py-5 text-tinta no-underline">
+            <Link href="/jogos/mitos-e-verdades" className="group grid gap-1.5 py-5 text-tinta no-underline">
               <span className="font-titulo text-[1.35rem] text-lavanda group-hover:underline">Mitos e verdades</span>
               <span className="text-suave">Aromaterapia, plantas e bem-estar: teste o que você sabe, com respostas fundamentadas.</span>
               <span className="nota">Na estação Jogos</span>

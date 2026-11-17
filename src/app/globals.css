@@ -146,6 +146,19 @@ em.cientifico, .cientifico { font-style: italic; }
 .btn-sec { background: transparent; color: var(--azul); }
 .btn-lavanda { background: var(--lavanda); border-color: var(--lavanda); color: var(--sobre-folha); }
 .btn-sec-lavanda { background: transparent; border-color: var(--lavanda); color: var(--lavanda); }
+.alternativa {
+  font: inherit; font-weight: 700; text-align: left; width: 100%; min-height: 56px; cursor: pointer;
+  display: flex; align-items: center; gap: .75rem; padding: .7rem 1rem;
+  border: 2px solid var(--linha); border-radius: 8px; background: var(--superficie); color: var(--tinta);
+}
+.alternativa:hover:not(:disabled) { border-color: var(--azul); }
+.alternativa:disabled { cursor: default; color: var(--suave); }
+.alternativa.certa { border-color: var(--folha); color: var(--folha); background: color-mix(in srgb, var(--folha) 10%, var(--superficie)); }
+.alternativa.errada { border-style: dashed; border-color: var(--suave); }
+.modo-turma .alternativa:disabled:not(.certa):not(.errada) { color: var(--tinta); }
+.enunciado { font-size: 1.65rem; }
+.modo-turma .enunciado { font-size: clamp(1.9rem, 4vw, 2.8rem); }
+.modo-turma .alternativa { font-size: 1.2rem; min-height: 64px; }
 .campo {
   font: inherit; color: var(--tinta); background: var(--papel); width: 100%;
   border: 1.5px solid var(--linha); border-radius: 6px; padding: .6rem .75rem; min-height: 44px;

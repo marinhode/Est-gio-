@@ -101,3 +101,21 @@ export type TemaSensorial = {
   fontes: Fonte[]
   exemplo: boolean
 }
+
+/** Jogos e desafios (orientação 4.1): mesmo motor para quiz e mitos e verdades. */
+export type PerguntaJogo = {
+  enunciado: string
+  opcoes: string[]
+  correta: number // índice em `opcoes`
+  feedback: string // explicação mostrada após responder, sempre fundamentada
+  fonte?: Fonte
+}
+
+export type Jogo = {
+  slug: string
+  titulo: string
+  descricao: string
+  tipo: 'quiz' | 'mitos_verdades'
+  perguntas: PerguntaJogo[]
+  exemplo: boolean
+}
