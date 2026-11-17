@@ -53,6 +53,8 @@
   --color-ciencia: var(--ciencia);
   --color-destaque: var(--destaque);
   --color-sobre-destaque: var(--sobre-destaque);
+  --color-sobre-folha: var(--sobre-folha);
+  --color-foco: var(--foco);
   --font-titulo: var(--fonte-titulo), Georgia, "Times New Roman", serif;
   --font-texto: var(--fonte-texto), "Segoe UI", system-ui, sans-serif;
 }
@@ -142,6 +144,14 @@ em.cientifico, .cientifico { font-style: italic; }
   display: inline-flex; align-items: center; justify-content: center; gap: .5rem; text-decoration: none;
 }
 .btn-sec { background: transparent; color: var(--azul); }
+.btn-lavanda { background: var(--lavanda); border-color: var(--lavanda); color: var(--sobre-folha); }
+.btn-sec-lavanda { background: transparent; border-color: var(--lavanda); color: var(--lavanda); }
+.campo {
+  font: inherit; color: var(--tinta); background: var(--papel); width: 100%;
+  border: 1.5px solid var(--linha); border-radius: 6px; padding: .6rem .75rem; min-height: 44px;
+}
+.campo:focus-visible { border-color: var(--foco); }
+textarea.campo { min-height: 6rem; resize: vertical; }
 
 /* ───────────── Caminhos (cores) ───────────── */
 .c-conheca { color: var(--folha); }
@@ -165,4 +175,5 @@ em.cientifico, .cientifico { font-style: italic; }
 
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
+  .barra-tempo { transition: width 1s linear; }
 }

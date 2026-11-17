@@ -84,3 +84,20 @@ export type Planta = {
   exemplo: boolean
   publicado: boolean
 }
+
+/** Conteúdo editorial da estação Sentidos (orientação 3.2). */
+export type PassoAtividade = {
+  texto: string
+  segundos?: number // passos com tempo mostram um cronômetro
+}
+
+export type TemaSensorial = {
+  slug: string
+  titulo: string
+  resumo: string
+  secoes: { titulo: string; texto: string[] }[]
+  experimente?: { titulo: string; introducao: string; passos: PassoAtividade[] }
+  pergunta?: string
+  fontes: Fonte[]
+  exemplo: boolean
+}
