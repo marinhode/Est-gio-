@@ -1,7 +1,7 @@
 import 'server-only'
 import { cacheTag } from 'next/cache'
 import { clienteAnonimo } from '@/lib/supabase/servidor'
-import type { Canteiro, Fonte, Jogo, NivelEvidencia, Planta, Projeto, Secao, TemaSensorial } from '@/lib/tipos'
+import type { Canteiro, Fonte, Jogo, NivelEvidencia, ParadaTour, Planta, Projeto, Secao, TemaSensorial } from '@/lib/tipos'
 
 /**
  * Ponto único de leitura do conteúdo público, vindo do Supabase.
@@ -180,4 +180,34 @@ export async function listarProjetos(): Promise<Projeto[]> {
     .order('titulo')
   if (error) falhou('os projetos', error)
   return data.map((p) => ({ ...p, link: p.link ?? undefined, ano: p.ano ?? undefined }))
+}
+
+// ───────────── Tour virtual ─────────────
+
+type LinhaParada = {
+  id: number; ordem: number; titulo: string; texto: string; imagem_url: string | null; imagem_alt: string | null
+  audio_url: string | null; transcricao: string | null; exemplo: boolean
+  tour_marcadores: { id: number; x: number; y: number; rotulo: string; planta: string | null; ordem: number; canteiros: { numero: number } | null }[]
+}
+
+export async function listarParadas(): Promise<ParadaTour[]> {
+  'use cache'
+  cacheTag(ETIQUETA)
+  const { data, error } = await clienteAnonimo()
+    .from('tour_paradas')
+    .select('id, ordem, titulo, texto, imagem_url, imagem_alt, audio_url, transcricao, exemplo, tour_marcadores(id, x, y, rotulo, planta, ordem, canteiros(numero))')
+    .order('ordem')
+  if (error) falhou('o tour', error)
+  return (data as unknown as LinhaParada[]).map((p) => ({
+    id: p.id,
+    ordem: p.ordem,
+    titulo: p.titulo,
+    texto: p.texto,
+    imagem: p.imagem_url ? { src: p.imagem_url, alt: p.imagem_alt ?? '' } : undefined,
+    audio: p.audio_url ? { src: p.audio_url, transcricao: p.transcricao ?? '' } : undefined,
+    exemplo: p.exemplo,
+    marcadores: [...p.tour_marcadores]
+      .sort((a, b) => a.ordem - b.ordem)
+      .map((m) => ({ id: m.id, x: Number(m.x), y: Number(m.y), rotulo: m.rotulo, planta: m.planta ?? undefined, canteiroNumero: m.canteiros?.numero })),
+  }))
 }

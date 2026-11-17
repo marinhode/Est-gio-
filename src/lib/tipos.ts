@@ -131,3 +131,24 @@ export type Projeto = {
   ano?: number
   publicado: boolean
 }
+
+/** Tour virtual (orientação, seção 5). */
+export type MarcadorTour = {
+  id: number
+  x: number // % da largura da foto
+  y: number // % da altura da foto
+  rotulo: string
+  planta?: string
+  canteiroNumero?: number
+}
+
+export type ParadaTour = {
+  id: number
+  ordem: number
+  titulo: string
+  texto: string
+  imagem?: { src: string; alt: string }
+  audio?: { src: string; transcricao: string }
+  exemplo: boolean
+  marcadores: MarcadorTour[]
+}

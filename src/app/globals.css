@@ -244,3 +244,18 @@ textarea.campo { min-height: 6rem; resize: vertical; }
 .canteiro-num { font-family: var(--font-titulo); font-size: 30px; fill: var(--folha); }
 .canteiro-nome { font-family: var(--font-texto); font-size: 17px; font-weight: 700; fill: var(--tinta); }
 .canteiro-qtd { font-family: var(--font-texto); font-size: 14px; fill: var(--suave); }
+
+/* ───────────── Tour: marcadores sobre a foto e janela dos três caminhos ───────────── */
+.marcador {
+  position: absolute; transform: translate(-50%, -50%); display: inline-flex; align-items: center; gap: .35rem;
+  min-height: 44px; padding: .3rem .8rem .3rem .3rem; border-radius: 999px; cursor: pointer; text-decoration: none;
+  background: var(--superficie); color: var(--tinta); border: 2px solid var(--azul); font: inherit; font-size: .85rem; font-weight: 700;
+  box-shadow: 0 4px 12px -6px color-mix(in srgb, var(--tinta) 60%, transparent);
+}
+.marcador-alvo { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 999px; background: var(--azul); color: var(--sobre-azul); }
+.chip .marcador-alvo { width: 1.5rem; height: 1.5rem; }
+.janela {
+  margin: auto; width: min(32rem, calc(100vw - 2rem)); padding: 1.5rem; border: 0; border-radius: 10px;
+  background: var(--superficie); color: var(--tinta);
+}
+.janela::backdrop { background: color-mix(in srgb, #000000 55%, transparent); }
