@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Suspense } from 'react'
 import { sair } from '@/app/admin/acoes'
 import { Icone, type NomeIcone } from '@/components/Icone'
@@ -36,8 +37,8 @@ async function Painel() {
     { rotulo: 'Jogos concluídos', valor: quizzes },
   ]
 
-  const conteudo: { titulo: string; icone: NomeIcone }[] = [
-    { titulo: 'Plantas e canteiros', icone: 'livro' },
+  const conteudo: { titulo: string; icone: NomeIcone; href?: string }[] = [
+    { titulo: 'Plantas e canteiros', icone: 'livro', href: '/admin/plantas' },
     { titulo: 'Paradas do tour', icone: 'tour' },
     { titulo: 'Perguntas dos jogos', icone: 'jogos' },
     { titulo: 'Projetos acadêmicos', icone: 'pessoas' },
@@ -93,12 +94,24 @@ async function Painel() {
         <h2 id="t-conteudo" className="text-[1.45rem]">Conteúdo</h2>
         <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {conteudo.map((c) => (
-            <li key={c.titulo} className="flex items-center gap-3 rounded-md border border-dashed border-linha p-4">
-              <Icone nome={c.icone} className="size-6 text-azul" />
-              <span className="grid">
-                <span className="font-bold">{c.titulo}</span>
-                <span className="nota">Edição em construção</span>
-              </span>
+            <li key={c.titulo}>
+              {c.href ? (
+                <Link href={c.href} className="group flex h-full items-center gap-3 rounded-md border-2 border-linha bg-superficie p-4 text-tinta no-underline hover:border-azul">
+                  <Icone nome={c.icone} className="size-6 text-azul" />
+                  <span className="grid">
+                    <span className="font-bold text-azul group-hover:underline">{c.titulo}</span>
+                    <span className="nota">Cadastrar e editar</span>
+                  </span>
+                </Link>
+              ) : (
+                <div className="flex h-full items-center gap-3 rounded-md border border-dashed border-linha p-4">
+                  <Icone nome={c.icone} className="size-6 text-suave" />
+                  <span className="grid">
+                    <span className="font-bold">{c.titulo}</span>
+                    <span className="nota">Edição em construção</span>
+                  </span>
+                </div>
+              )}
             </li>
           ))}
         </ul>

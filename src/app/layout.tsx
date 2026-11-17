@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from 'next'
 import { Atkinson_Hyperlegible_Next, Young_Serif } from 'next/font/google'
-import { BarraEstacoes } from '@/components/BarraEstacoes'
-import { Cabecalho } from '@/components/Cabecalho'
+import { Suspense } from 'react'
+import { BarraEstacoes, BarraEstacoesBase } from '@/components/BarraEstacoes'
+import { Cabecalho, CabecalhoBase } from '@/components/Cabecalho'
 import { Rodape } from '@/components/Rodape'
 import './globals.css'
 
@@ -45,8 +46,12 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
         <a href="#conteudo" className="pular">
           Pular para o conteúdo
         </a>
-        <Cabecalho />
-        <BarraEstacoes />
+        <Suspense fallback={<CabecalhoBase caminho="" />}>
+          <Cabecalho />
+        </Suspense>
+        <Suspense fallback={<BarraEstacoesBase caminho="" />}>
+          <BarraEstacoes />
+        </Suspense>
         <main id="conteudo" tabIndex={-1} className="flex-1 outline-none">
           {children}
         </main>

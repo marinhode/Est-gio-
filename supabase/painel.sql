@@ -39,3 +39,6 @@ create policy midias_editor_altera on storage.objects for update to authenticate
 create policy midias_editor_apaga on storage.objects for delete to authenticated using (bucket_id = 'midias' and public.eh_editor());
 
 commit;
+
+-- Apagar arquivos exige também leitura (o armazenamento localiza o objeto antes de remover)
+create policy midias_editor_le on storage.objects for select to authenticated using (bucket_id = 'midias' and public.eh_editor());

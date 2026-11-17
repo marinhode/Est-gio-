@@ -16,7 +16,11 @@ const itens: { href: string; rotulo: string; icone: NomeIcone }[] = [
  * presa ao topo enquanto a página rola.
  */
 export function BarraEstacoes() {
-  const caminho = usePathname()
+  return <BarraEstacoesBase caminho={usePathname()} />
+}
+
+/** Versão sem leitura do endereço: usada enquanto a página ainda está sendo montada. */
+export function BarraEstacoesBase({ caminho }: { caminho: string }) {
   const trilho = useRef<HTMLUListElement>(null)
   const [bordas, setBordas] = useState({ inicio: true, fim: false })
 

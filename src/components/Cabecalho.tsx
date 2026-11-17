@@ -7,7 +7,11 @@ import { useEffect, useState } from 'react'
 import { CONTRASTE, LETRA, usePreferencia } from '@/lib/preferencias'
 
 export function Cabecalho() {
-  const caminho = usePathname()
+  return <CabecalhoBase caminho={usePathname()} />
+}
+
+/** Versão sem leitura do endereço: usada enquanto a página ainda está sendo montada. */
+export function CabecalhoBase({ caminho }: { caminho: string }) {
   // O painel fica associado à página em que foi aberto: ao navegar, fecha sozinho.
   const [aberto, setAberto] = useState<{ painel: 'leitura'; em: string } | null>(null)
   const painel = aberto?.em === caminho ? aberto.painel : null
