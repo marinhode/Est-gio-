@@ -6,8 +6,8 @@ Documento construído por partes. Cada parte só avança após aprovação.
 |---|---|---|
 | 1 | Visão e proposta | ✅ Aprovada |
 | 2 | Públicos e personas | ✅ Aprovada |
-| 3 | Jornadas | ✅ Aprovada (1 ponto em aberto: acesso ao painel) |
-| 4 | Arquitetura da informação | ⏳ |
+| 3 | Jornadas | ✅ Aprovada |
+| 4 | Arquitetura da informação | 🟡 Em discussão |
 | 5 | Identidade e tom | ⏳ |
 | 6 | Escopo final | ⏳ |
 
@@ -91,7 +91,7 @@ Em qualquer ponto do sistema (QR, mapa, tour, catálogo), a planta se abre em:
 **Exige:** HTML semântico, tour com versão alternativa, cor nunca como única informação.
 
 ### Jornada 5 — Júlia atualiza uma ficha
-1. Entra no painel de conteúdo (forma de acesso: ver decisões).
+1. Entra em `/admin` com e-mail e senha.
 2. Plantas → Hortelã. Formulário segue as **10 seções** da ficha padrão.
 3. Edita texto curto e ampliado, sobe foto (alt obrigatório), adiciona fonte.
 4. Marca a revisão: nome e data registrados automaticamente.
@@ -100,12 +100,49 @@ Em qualquer ponto do sistema (QR, mapa, tour, catálogo), a planta se abre em:
 **Exige:** campos obrigatórios, rascunho/publicado, "validado por" + área e data automáticos.
 
 ### Decisões
-1. **Sem login de usuário.** Visitantes não criam conta em nenhum momento. Quiz, pergunta sensorial e diário são anônimos; progresso (trilhas) fica só no aparelho.
+1. **Visitante sem login.** Visitantes não criam conta em nenhum momento. Quiz, pergunta sensorial e diário são anônimos; progresso (trilhas) fica só no aparelho.
 2. **Respostas sensoriais salvas de forma anônima**, para a Psicologia ver dados agregados (atende o "painel de acompanhamento", 4.2).
 3. **Sem papéis nem fluxo de aprovação.** Cada ficha registra "validado por", a área (Botânica, Psicologia, Biomedicina, Farmácia) e a data, atendendo a exigência de validação por área (3.3).
-4. ⏳ **Acesso ao painel de conteúdo:** em aberto.
+4. **Painel de conteúdo com login só para a equipe editorial** (psicóloga). E-mail e senha via Supabase Auth, conta criada manualmente, sem página de cadastro.
 
 ### Ajustes após leitura do documento de orientações
 - **Tour é o diferencial avaliado** (seção 5). O QR continua sendo a entrada principal de uso, mas o tour recebe mais tempo e acabamento.
 - **"Estações" ≠ "paradas".** Estações são as 6 seções da plataforma; paradas são as 5 etapas do tour.
 - **Obrigatórios que estavam como opcionais:** pelo menos uma pergunta interativa por ficha; espaço para diário sensorial e atenção plena; caminhos no mapa.
+
+---
+
+## Parte 4 — Arquitetura da informação (rascunho, em discussão)
+
+### Mapa do site
+| Rota | O que é | Origem no documento |
+|---|---|---|
+| `/` | Início: o laboratório, objetivos, cursos, atalhos para as 6 estações, convite para visitar | 4.1 |
+| `/tour` · `/tour/[1-5]` | **Estação 1, Tour:** 5 paradas com foto, marcadores, áudio e legenda | 2, 5 |
+| `/tour/lista` | Versão acessível do tour, sem depender de imagem | 5.2 |
+| `/mapa` | Mapa da horta: canteiros, caminhos e plantas (também é o "voltar ao mapa" do tour) | 4.1, 5.2 |
+| `/plantas` | **Estação 2, Enciclopédia:** busca e filtros (categoria, característica, canteiro) | 2, 4.1 |
+| `/plantas/[slug]` | Ficha da planta | 3.1, 4.1 |
+| `/p/[slug]` | Endereço curto do QR: redireciona para a ficha e conta o acesso | 4.1, 4.2 |
+| `/sentidos` | **Estação 3, Experiências sensoriais:** os 7 conteúdos de Psicologia | 2, 3.2 |
+| `/sentidos/diario` | Diário sensorial (anônimo, salvo no aparelho) | 3.2 |
+| `/ciencia` | **Estação 4, Ciência:** textos gerais; Biomedicina e Farmácia no próximo semestre | 2 |
+| `/jogos` | **Estação 5, Jogos:** quiz, mitos e verdades, associação folha ↔ espécie | 2, 4.1 |
+| `/comunidade` | **Estação 6, Comunidade (área acadêmica):** projetos, vídeos, pesquisas, produtos | 2, 4.1 |
+| `/acessibilidade` | Declaração de acessibilidade e atalhos | 4.1 |
+| `/admin` | Painel de conteúdo (login) | 4.1 |
+
+### Ficha da planta: a página central
+1. **Topo:** foto, nome popular e científico, canteiro (com link para o mapa), frase de impacto e apresentação curta.
+2. **Barra dos 3 caminhos** (fica fixa ao rolar): 🌱 Conheça · 👃 Sinta · 🔬 Ciência.
+3. **🌱 Conheça:** 01 Identificação, 02 Conhecendo a planta, 03 Cultivo, 04 História e cultura.
+4. **👃 Sinta:** 05 Experiência sensorial com a **pergunta interativa**, 06 Psicologia e bem-estar.
+5. **🔬 Ciência:** usos com selo de evidência (popular, evidência, reconhecido, hipótese); 07, 08 e 09 aparecem como "Em preparação pela equipe de Biomedicina e Farmácia".
+6. **Rodapé:** 10 Fontes, "validado por" com área e data, aviso fixo para questões clínicas, plantas do mesmo canteiro.
+
+Cada seção mostra o texto curto e um botão "Ler mais" para a explicação ampliada (3.3).
+
+### Navegação
+- Cabeçalho com as 6 estações; no celular, botão de menu.
+- Nomes curtos no menu: **Tour · Plantas · Sentidos · Ciência · Jogos · Comunidade**.
+- No tour, clicar em uma planta abre o **modal dos 3 caminhos**, e cada caminho leva à seção correspondente da ficha.
