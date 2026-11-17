@@ -17,6 +17,7 @@ npm install
 npm run dev      # http://localhost:3000
 npm run build    # build de produção
 npm run lint
+npm run a11y     # auditoria de acessibilidade (axe-core, WCAG 2.2 AA), com o site rodando
 ```
 
 Enquanto o Supabase não estiver ligado, o site usa o conteúdo de exemplo de `src/lib/dados/exemplo.ts`.

@@ -3,33 +3,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useState, useSyncExternalStore } from 'react'
-
-type Preferencia = { atributo: 'data-letra' | 'data-contraste'; valor: string; chave: string }
-const LETRA: Preferencia = { atributo: 'data-letra', valor: 'grande', chave: 'ls-letra' }
-const CONTRASTE: Preferencia = { atributo: 'data-contraste', valor: 'alto', chave: 'ls-contraste' }
-
-/** Lê a preferência direto do <html>, que o script do layout já ajustou antes da pintura. */
-function usePreferencia(p: Preferencia) {
-  const ativo = useSyncExternalStore(
-    (avisar) => {
-      const obs = new MutationObserver(avisar)
-      obs.observe(document.documentElement, { attributes: true, attributeFilter: [p.atributo] })
-      return () => obs.disconnect()
-    },
-    () => document.documentElement.getAttribute(p.atributo) === p.valor,
-    () => false,
-  )
-  const alternar = () => {
-    const ligar = !ativo
-    if (ligar) document.documentElement.setAttribute(p.atributo, p.valor)
-    else document.documentElement.removeAttribute(p.atributo)
-    try {
-      localStorage.setItem(p.chave, ligar ? '1' : '0')
-    } catch {}
-  }
-  return [ativo, alternar] as const
-}
+import { useEffect, useState } from 'react'
+import { CONTRASTE, LETRA, usePreferencia } from '@/lib/preferencias'
 
 export function Cabecalho() {
   const caminho = usePathname()

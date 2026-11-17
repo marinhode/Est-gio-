@@ -74,7 +74,7 @@ h1 { font-size: 2.1rem; }
 h2 { font-size: 1.6rem; }
 h3 { font-size: 1.2rem; }
 p { text-wrap: pretty; }
-a { color: var(--azul); text-underline-offset: .18em; }
+a { color: var(--azul); text-decoration: underline; text-underline-offset: .18em; }
 em.cientifico, .cientifico { font-style: italic; }
 :focus-visible { outline: 3px solid var(--foco); outline-offset: 3px; border-radius: 4px; }
 ::selection { background: var(--destaque); color: var(--sobre-destaque); }
@@ -159,6 +159,16 @@ em.cientifico, .cientifico { font-style: italic; }
 .enunciado { font-size: 1.65rem; }
 .modo-turma .enunciado { font-size: clamp(1.9rem, 4vw, 2.8rem); }
 .modo-turma .alternativa { font-size: 1.2rem; min-height: 64px; }
+.interruptor {
+  flex: none; position: relative; width: 3.4rem; height: 2rem; border-radius: 999px; cursor: pointer;
+  background: var(--linha); border: 2px solid var(--suave);
+}
+.interruptor::after {
+  content: ""; position: absolute; top: .2rem; left: .2rem; width: 1.3rem; height: 1.3rem; border-radius: 50%;
+  background: var(--superficie); border: 2px solid var(--suave);
+}
+.interruptor[aria-checked="true"] { background: var(--azul); border-color: var(--azul); }
+.interruptor[aria-checked="true"]::after { left: calc(100% - 1.5rem); border-color: var(--azul); }
 .campo {
   font: inherit; color: var(--tinta); background: var(--papel); width: 100%;
   border: 1.5px solid var(--linha); border-radius: 6px; padding: .6rem .75rem; min-height: 44px;
@@ -189,4 +199,5 @@ textarea.campo { min-height: 6rem; resize: vertical; }
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
   .barra-tempo { transition: width 1s linear; }
+  .interruptor::after { transition: left .15s ease-out; }
 }
