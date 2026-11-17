@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 /** Atualizar a cada nova auditoria (ver docs/acessibilidade.md). */
 const auditoria = {
   data: '17/11/2026',
-  paginas: 14,
+  paginas: 17,
   combinacoes: 'tema claro, tema escuro e alto contraste',
   falhas: 0,
 }
@@ -60,7 +60,7 @@ const recursos = [
 ]
 
 const limitacoes = [
-  'O tour virtual e o mapa da horta estão em construção. O tour terá uma versão em lista, que não depende de imagens.',
+  'O mapa da horta ainda é esquemático e as paradas do tour ainda não têm fotos. O tour já tem uma versão em lista, que não depende de imagens.',
   'Parte dos textos é provisória e ainda será revisada pelas equipes dos cursos.',
   'A verificação automática encontra só uma parte dos problemas. Uma revisão manual com teclado e leitor de tela está prevista antes da entrega.',
 ]

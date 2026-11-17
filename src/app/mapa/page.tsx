@@ -44,9 +44,9 @@ export default async function Mapa() {
                 const y = C + Math.floor(i / colunas) * (A + C)
                 const n = plantasDe(c.id).length
                 return (
-                  <a key={c.id} href={`#canteiro-${c.numero}`} aria-label={`Canteiro ${c.numero}, ${c.nome}, ${n} ${n === 1 ? 'planta' : 'plantas'}`} className="canteiro-svg">
+                  <a key={c.id} href={`#canteiro-${c.numero}`} className="canteiro-svg">
                     <rect x={x} y={y} width={L} height={A} rx="10" />
-                    <text x={x + 16} y={y + 34} className="canteiro-num">{c.numero}</text>
+                    <text x={x + 16} y={y + 34} className="canteiro-num">Canteiro {c.numero}</text>
                     <text x={x + 16} y={y + 64} className="canteiro-nome">{c.nome.length > 24 ? c.nome.slice(0, 23) + '…' : c.nome}</text>
                     <text x={x + 16} y={y + 92} className="canteiro-qtd">{n} {n === 1 ? 'planta' : 'plantas'}</text>
                   </a>

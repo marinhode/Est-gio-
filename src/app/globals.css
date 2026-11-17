@@ -241,7 +241,7 @@ textarea.campo { min-height: 6rem; resize: vertical; }
 .canteiro-svg:hover rect { fill: color-mix(in srgb, var(--folha) 28%, var(--superficie)); }
 .canteiro-svg:focus-visible { outline: none; }
 .canteiro-svg:focus-visible rect { stroke: var(--foco); stroke-width: 5; }
-.canteiro-num { font-family: var(--font-titulo); font-size: 30px; fill: var(--folha); }
+.canteiro-num { font-family: var(--font-titulo); font-size: 24px; fill: var(--folha); }
 .canteiro-nome { font-family: var(--font-texto); font-size: 17px; font-weight: 700; fill: var(--tinta); }
 .canteiro-qtd { font-family: var(--font-texto); font-size: 14px; fill: var(--suave); }
 
