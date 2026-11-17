@@ -6,7 +6,7 @@
 --
 -- Regras de acesso (RLS):
 --   visitante (anon)       → lê só conteúdo publicado; pode registrar respostas e acessos
---   equipe (authenticated) → lê e escreve tudo; não existe cadastro público
+--   editor autorizado       → lê e escreve tudo (ver editores.sql: estar logado não basta)
 
 create type nivel_evidencia as enum ('popular', 'evidencia_cientifica', 'uso_reconhecido', 'hipotese');
 create type area_validacao as enum ('Botânica', 'Psicologia', 'Biomedicina', 'Farmácia');

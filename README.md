@@ -6,7 +6,7 @@ Plataforma educativa da horta do Laboratório Sensorial: plantas, experiências 
 - [docs/requisitos.md](docs/requisitos.md): requisitos do documento de orientações ([PDF](docs/referencia/orientacoes.pdf))
 - [docs/conceito.md](docs/conceito.md): conceito aprovado (visão, personas, jornadas, arquitetura, identidade, escopo)
 - [docs/identidade/previa.html](docs/identidade/previa.html): prévia da identidade visual
-- [supabase/schema.sql](supabase/schema.sql): banco de dados
+- [supabase/schema.sql](supabase/schema.sql) e [supabase/editores.sql](supabase/editores.sql): banco de dados (aplicar nessa ordem)
 
 ## Tecnologia
 Next.js 16 (App Router, Cache Components) · TypeScript · Tailwind CSS 4 · Supabase · Vercel
