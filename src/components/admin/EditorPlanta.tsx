@@ -50,7 +50,7 @@ export function EditorPlanta({ inicial, slugOriginal, canteiros, editor }: {
       }
       setErros([])
       setD((atual) => ({ ...atual, publicado: publicar }))
-      setAviso(publicar ? 'Publicada. A ficha já aparece no site.' : 'Rascunho salvo. A ficha não aparece no site.')
+      setAviso(publicar ? 'Publicada. A ficha aparece no site em alguns segundos.' : 'Rascunho salvo. A ficha não aparece no site.')
       if (r.slug !== slugOriginal) router.replace(`/admin/plantas/${r.slug}`)
       else router.refresh()
     })

@@ -43,7 +43,7 @@ export function EditorJogo({ inicial, slugOriginal }: { inicial: DadosJogo; slug
       }
       setErros([])
       setD((a) => ({ ...a, publicado: publicar }))
-      setAviso(publicar ? 'Publicado. O jogo já aparece no site.' : 'Rascunho salvo. O jogo não aparece no site.')
+      setAviso(publicar ? 'Publicado. O jogo aparece no site em alguns segundos.' : 'Rascunho salvo. O jogo não aparece no site.')
       if (r.slug !== slugOriginal) router.replace(`/admin/jogos/${r.slug}`)
       else router.refresh()
     })
