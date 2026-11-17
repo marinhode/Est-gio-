@@ -8,8 +8,8 @@ Documento construído por partes. Cada parte só avança após aprovação.
 | 2 | Públicos e personas | ✅ Aprovada |
 | 3 | Jornadas | ✅ Aprovada |
 | 4 | Arquitetura da informação | ✅ Aprovada |
-| 5 | Identidade e tom | 🟡 Em discussão |
-| 6 | Escopo final | ⏳ |
+| 5 | Identidade e tom | ✅ Aprovada (refinamentos durante o desenvolvimento) |
+| 6 | Escopo final | 🟡 Em discussão |
 
 ---
 
@@ -154,7 +154,7 @@ Cada seção mostra o texto curto e um botão "Ler mais" para a explicação amp
 
 ---
 
-## Parte 5 — Identidade e tom (rascunho, em discussão)
+## Parte 5 — Identidade e tom
 
 ### Nome
 **Laboratório Sensorial Interativo**, o nome do documento. Sem marca nova.
@@ -186,3 +186,46 @@ Cada seção mostra o texto curto e um botão "Ler mais" para a explicação amp
 - Todo áudio e vídeo com legenda ou transcrição.
 - Animações desligadas para quem pede menos movimento no sistema.
 - `lang="pt-BR"`, títulos hierárquicos, imagens com texto alternativo obrigatório no painel.
+
+---
+
+## Parte 6 — Escopo final (rascunho, em discussão)
+
+### Entra nesta entrega
+| Funcionalidade | Nível de acabamento |
+|---|---|
+| Ficha da planta (3 caminhos, pergunta interativa, selos, etiqueta) | Completo, peça central |
+| QR Codes (`/p/[slug]`) + página para imprimir as placas | Completo |
+| Tour virtual: 5 paradas, marcadores, modal dos 3 caminhos, áudio com transcrição, versão em lista | **Completo, maior acabamento visual** (diferencial avaliado) |
+| Mapa da horta (SVG com canteiros e caminhos) | Completo, ligado ao tour |
+| Catálogo com busca e filtros | Completo |
+| Início, Sentidos, Ciência, Comunidade | Páginas de conteúdo, simples |
+| Jogos: quiz + mitos e verdades (mesmo motor, com feedback) | Completo |
+| Diário sensorial (salvo no aparelho) | Simples |
+| Painel: login, plantas completas (upload, alt obrigatório, validado por), formulário genérico para paradas, quizzes, projetos e textos | Funcional |
+| Painel de acompanhamento: contadores (plantas, validadas, acessos por QR, visitas ao tour, respostas) | Simples, só números |
+| Acessibilidade WCAG 2.2 AA | Transversal + auditoria no último dia |
+
+### Fica para depois
+- Assistente de perguntas e respostas (exige IA com fontes; alto risco).
+- Trilhas de descoberta e certificado.
+- Associação folha ↔ espécie (entra se sobrar tempo; o motor do quiz já aceita).
+- Galeria multimídia separada (mídias ficam dentro das fichas e do tour).
+- Fotos 360° (o documento aceita fotos comuns).
+
+### Cronograma revisado
+| Dia | Entrega |
+|---|---|
+| 1 | Projeto Next.js + Supabase, banco, 6 plantas de exemplo, layout com identidade aprovada, menu e botão Aa |
+| 2 | Ficha da planta, catálogo, rota de QR com contagem, página de impressão dos QRs |
+| 3 | Tour: 5 paradas, marcadores, modal, áudio/transcrição, versão em lista |
+| 4 | Mapa da horta ligado ao tour; Início, Sentidos, Ciência, Comunidade |
+| 5 | Painel: login, plantas, formulário genérico, upload |
+| 6 | Jogos, diário sensorial, painel de acompanhamento |
+| 7 | Auditoria de acessibilidade (teclado, leitor de tela, contraste), publicação na Vercel, roteiro da apresentação |
+
+### Dependências externas (maior risco do projeto)
+- **Croqui da horta**: posição dos canteiros e caminhos, para desenhar o mapa.
+- **Fotos reais**: das plantas e dos 5 pontos do tour.
+- **Lista real de plantas** e textos da Psicologia.
+- Sem isso, o sistema é entregue com conteúdo de exemplo marcado como tal.
