@@ -7,10 +7,12 @@ import { clienteAnonimo } from '@/lib/supabase/servidor'
  * Falhas não atrapalham a experiência; o visitante segue normalmente.
  */
 
-export async function registrarResposta(pergunta: string, resposta: string): Promise<boolean> {
+export async function registrarResposta(pergunta: string, resposta: string, planta?: string): Promise<boolean> {
   const texto = resposta.trim().slice(0, 500)
   if (!texto) return false
-  const { error } = await clienteAnonimo().from('respostas').insert({ pergunta: pergunta.slice(0, 300), resposta: texto })
+  const { error } = await clienteAnonimo()
+    .from('respostas')
+    .insert({ pergunta: pergunta.slice(0, 300), resposta: texto, planta: planta && /^[a-z0-9-]+$/.test(planta) ? planta : null })
   return !error
 }
 

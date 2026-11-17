@@ -23,6 +23,7 @@
   --sobre-folha: #FFFFFF;
   --foco: #23409A;
   font-size: 112.5%;       /* 18px de texto base */
+  --altura-barra: calc(44px + 1.2rem + 1px); /* barra de estações: chip + respiro + borda */
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-contraste="alto"]) {
@@ -137,6 +138,13 @@ em.cientifico, .cientifico { font-style: italic; }
 .sombra-inicio { left: 0; background: linear-gradient(to right, var(--superficie) 30%, transparent); }
 .sombra-fim { right: 0; background: linear-gradient(to left, var(--superficie) 30%, transparent); }
 .sombra[data-visivel="true"] { opacity: 1; }
+
+/* ───────────── Ficha: barra dos três caminhos, presa logo abaixo da barra de estações ───────────── */
+.caminhos-ficha {
+  position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--altura-barra)); z-index: 25;
+  background: var(--superficie); border-bottom: 1px solid var(--linha);
+}
+.secao-ficha { scroll-margin-top: calc(var(--altura-barra) + 4.5rem); }
 
 /* ───────────── Botões ───────────── */
 .btn {
