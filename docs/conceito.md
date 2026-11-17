@@ -7,8 +7,8 @@ Documento construído por partes. Cada parte só avança após aprovação.
 | 1 | Visão e proposta | ✅ Aprovada |
 | 2 | Públicos e personas | ✅ Aprovada |
 | 3 | Jornadas | ✅ Aprovada |
-| 4 | Arquitetura da informação | 🟡 Em discussão |
-| 5 | Identidade e tom | ⏳ |
+| 4 | Arquitetura da informação | ✅ Aprovada |
+| 5 | Identidade e tom | 🟡 Em discussão |
 | 6 | Escopo final | ⏳ |
 
 ---
@@ -112,7 +112,7 @@ Em qualquer ponto do sistema (QR, mapa, tour, catálogo), a planta se abre em:
 
 ---
 
-## Parte 4 — Arquitetura da informação (rascunho, em discussão)
+## Parte 4 — Arquitetura da informação
 
 ### Mapa do site
 | Rota | O que é | Origem no documento |
@@ -146,3 +146,42 @@ Cada seção mostra o texto curto e um botão "Ler mais" para a explicação amp
 - Cabeçalho com as 6 estações; no celular, botão de menu.
 - Nomes curtos no menu: **Tour · Plantas · Sentidos · Ciência · Jogos · Comunidade**.
 - No tour, clicar em uma planta abre o **modal dos 3 caminhos**, e cada caminho leva à seção correspondente da ficha.
+
+### Decisões
+- 3 caminhos numa **página única com âncoras** (não abas), por acessibilidade e busca.
+- **Estação Ciência fica visível** com textos gerais e aviso "em construção no próximo semestre" (demonstra expansão futura).
+- Nomes do menu aprovados: Tour · Plantas · Sentidos · Ciência · Jogos · Comunidade.
+
+---
+
+## Parte 5 — Identidade e tom (rascunho, em discussão)
+
+### Nome
+**Laboratório Sensorial Interativo**, o nome do documento. Sem marca nova.
+
+### Tom de voz
+- Fala com "você", frases curtas, convida mais do que explica: "Esfregue uma folha. O que você sente?"
+- Curiosidade antes de definição: começa pela pergunta ou pelo fato surpreendente.
+- Nunca corrige uma sensação, nunca promete efeito.
+
+| Evitar | Usar |
+|---|---|
+| "A camomila trata a ansiedade" | "Uso popular: chá calmante. O que a ciência pesquisa: ver evidências" |
+| "Comprovado cientificamente" | O selo do nível de evidência |
+| "Paciente", "terapia", "sintoma" | "Participante", "atividade", "sensação" |
+| "Resposta errada!" (no quiz) | "Quase! Veja por quê…" |
+
+### Visual
+- **A foto é protagonista**: horta real, luz natural; ilustração botânica como apoio (no estilo da ficha de orégano usada como referência no documento).
+- **Paleta:** verde-folha escuro (texto e botões) · fundo creme/papel · destaque terracota · um tom por caminho (🌱 verde · 👃 lavanda · 🔬 azul-petróleo). Todas as combinações de texto com contraste ≥ 4.5:1.
+- **Tipografia:** Atkinson Hyperlegible no texto (criada para pessoas com baixa visão); serifada suave nos títulos.
+- **Selos de evidência:** ícone + texto + cor, nunca só cor.
+  - 🗣️ Uso popular · 📚 Evidência científica · ✅ Uso reconhecido · 🔍 Hipótese de pesquisa
+
+### Acessibilidade como identidade (WCAG 2.2 AA)
+- Texto base de 18 px; botões e alvos de toque com no mínimo 44 px.
+- Botão **"Aa"** fixo: aumentar texto e alto contraste (persona Dona Lúcia), lembrado no aparelho.
+- Foco do teclado sempre visível; link "pular para o conteúdo".
+- Todo áudio e vídeo com legenda ou transcrição.
+- Animações desligadas para quem pede menos movimento no sistema.
+- `lang="pt-BR"`, títulos hierárquicos, imagens com texto alternativo obrigatório no painel.
