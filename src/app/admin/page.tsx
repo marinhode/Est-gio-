@@ -39,6 +39,7 @@ async function Painel() {
 
   const conteudo: { titulo: string; icone: NomeIcone; href?: string }[] = [
     { titulo: 'Plantas e canteiros', icone: 'livro', href: '/admin/plantas' },
+    { titulo: 'Placas com QR Code', icone: 'pino', href: '/admin/qr' },
     { titulo: 'Paradas do tour', icone: 'tour' },
     { titulo: 'Perguntas dos jogos', icone: 'jogos', href: '/admin/jogos' },
     { titulo: 'Projetos acadêmicos', icone: 'pessoas', href: '/admin/projetos' },

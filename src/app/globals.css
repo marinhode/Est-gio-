@@ -210,3 +210,27 @@ textarea.campo { min-height: 6rem; resize: vertical; }
   .barra-tempo { transition: width 1s linear; }
   .interruptor::after { transition: left .15s ease-out; }
 }
+
+/* ───────────── Placas com QR Code (impressão) ───────────── */
+.placas { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); }
+.placa {
+  display: grid; justify-items: center; gap: .35rem; text-align: center; padding: 1.25rem 1rem;
+  background: #FFFFFF; color: #000000; border: 2px solid #23409A; border-radius: 10px; break-inside: avoid;
+  font-size: 16px; /* tamanho fixo: a placa não acompanha o ajuste de letra da tela */
+}
+.placa-lab { font-size: 11px; letter-spacing: .02em; color: #23409A; font-weight: 700; }
+.placa-nome { font-family: var(--font-titulo); font-size: 30px; line-height: 1.1; }
+.placa-cientifico { font-size: 15px; }
+.placa-canteiro { font-size: 13px; font-weight: 700; color: #2E5B39; }
+.placa-qr { width: 9.5rem; margin-block: .4rem; }
+.placa-qr svg { width: 100%; height: auto; display: block; }
+.placa-convite { font-size: 13px; max-width: 15rem; }
+.placa-url { font-size: 11px; color: #333333; }
+
+@media print {
+  .faixa, .barra-estacoes, .rodape, .pular, .nao-imprimir { display: none !important; }
+  body { background: #FFFFFF; }
+  main { padding: 0 !important; }
+  .placas { grid-template-columns: repeat(2, 1fr); gap: 8mm; }
+  .placa { border-width: 1.5px; }
+}
