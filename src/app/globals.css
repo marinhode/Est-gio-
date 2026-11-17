@@ -59,7 +59,7 @@
 
 @layer base {
 /* ───────────── Base ───────────── */
-html { scroll-padding-top: 1rem; }
+html { scroll-padding-top: 5rem; } /* espaço da barra de estações fixa */
 body {
   background: var(--papel);
   color: var(--tinta);
@@ -110,12 +110,30 @@ em.cientifico, .cientifico { font-style: italic; }
 .botao-faixa[aria-pressed="true"], .botao-faixa[aria-expanded="true"] { background: #FFFFFF; color: var(--marca); border-color: #FFFFFF; }
 .botao-faixa .aa { font-family: var(--font-titulo); font-size: 1.05rem; font-weight: 400; }
 
-.nav-estacoes a {
-  display: flex; align-items: center; gap: .5rem; min-height: 44px; padding: .4rem .2rem;
-  text-decoration: none; font-weight: 700; border-bottom: 3px solid transparent;
+/* ───────────── Barra das estações (fixa ao rolar) ───────────── */
+.barra-estacoes {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30;
+  background: var(--superficie); border-bottom: 1px solid var(--linha);
+  box-shadow: 0 6px 12px -10px color-mix(in srgb, var(--tinta) 45%, transparent);
 }
-.nav-estacoes a:hover { border-bottom-color: rgba(255,255,255,.6); }
-.nav-estacoes a[aria-current="page"] { border-bottom-color: var(--marca-claro); }
+.trilho {
+  display: flex; gap: .5rem; overflow-x: auto; padding-block: .6rem;
+  scroll-snap-type: x proximity; scrollbar-width: none; overscroll-behavior-x: contain;
+  scroll-padding-inline: max(16px, env(safe-area-inset-left, 0px));
+}
+.trilho::-webkit-scrollbar { display: none; }
+.trilho > li { flex: none; scroll-snap-align: start; }
+.chip {
+  display: inline-flex; align-items: center; gap: .4rem; min-height: 44px; padding: .35rem 1rem;
+  border-radius: 999px; border: 1.5px solid var(--linha); background: var(--papel); color: var(--tinta);
+  font-weight: 700; text-decoration: none; white-space: nowrap;
+}
+.chip:hover { border-color: var(--azul); color: var(--azul); }
+.chip[aria-current="page"] { background: var(--azul); border-color: var(--azul); color: var(--sobre-azul); }
+.sombra { position: absolute; top: 0; bottom: 0; width: 2.75rem; pointer-events: none; opacity: 0; transition: opacity .2s; }
+.sombra-inicio { left: 0; background: linear-gradient(to right, var(--superficie) 30%, transparent); }
+.sombra-fim { right: 0; background: linear-gradient(to left, var(--superficie) 30%, transparent); }
+.sombra[data-visivel="true"] { opacity: 1; }
 
 /* ───────────── Botões ───────────── */
 .btn {

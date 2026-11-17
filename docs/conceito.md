@@ -143,7 +143,7 @@ Em qualquer ponto do sistema (QR, mapa, tour, catálogo), a planta se abre em:
 Cada seção mostra o texto curto e um botão "Ler mais" para a explicação ampliada (3.3).
 
 ### Navegação
-- Cabeçalho com as 6 estações; no celular, botão de menu.
+- **Barra das estações** logo abaixo da faixa azul, em uma linha só: no celular, arrasta-se para o lado; fica fixa no topo ao rolar a página, em todas as telas. Inclui o Mapa. (Substituiu o botão de menu, a pedido.)
 - Nomes curtos no menu: **Tour · Plantas · Sentidos · Ciência · Jogos · Comunidade**.
 - No tour, clicar em uma planta abre o **modal dos 3 caminhos**, e cada caminho leva à seção correspondente da ficha.
 

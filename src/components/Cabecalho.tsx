@@ -4,8 +4,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState, useSyncExternalStore } from 'react'
-import { Icone } from '@/components/Icone'
-import { estacoes } from '@/lib/estacoes'
 
 type Preferencia = { atributo: 'data-letra' | 'data-contraste'; valor: string; chave: string }
 const LETRA: Preferencia = { atributo: 'data-letra', valor: 'grande', chave: 'ls-letra' }
@@ -35,10 +33,10 @@ function usePreferencia(p: Preferencia) {
 
 export function Cabecalho() {
   const caminho = usePathname()
-  // O painel aberto fica associado à página em que foi aberto: ao navegar, fecha sozinho.
-  const [aberto, setAberto] = useState<{ painel: 'menu' | 'leitura'; em: string } | null>(null)
+  // O painel fica associado à página em que foi aberto: ao navegar, fecha sozinho.
+  const [aberto, setAberto] = useState<{ painel: 'leitura'; em: string } | null>(null)
   const painel = aberto?.em === caminho ? aberto.painel : null
-  const setPainel = (p: 'menu' | 'leitura' | null) => setAberto(p ? { painel: p, em: caminho } : null)
+  const setPainel = (p: 'leitura' | null) => setAberto(p ? { painel: p, em: caminho } : null)
   const [letra, alternarLetra] = usePreferencia(LETRA)
   const [contraste, alternarContraste] = usePreferencia(CONTRASTE)
 
@@ -48,8 +46,6 @@ export function Cabecalho() {
     window.addEventListener('keydown', esc)
     return () => window.removeEventListener('keydown', esc)
   }, [])
-
-  const atual = (href: string) => caminho === href || caminho.startsWith(href + '/')
 
   return (
     <header className="faixa">
@@ -65,19 +61,7 @@ export function Cabecalho() {
           </span>
         </Link>
 
-        <nav aria-label="Estações" className="nav-estacoes ml-auto hidden xl:block">
-          <ul className="flex gap-5">
-            {estacoes.map((e) => (
-              <li key={e.href}>
-                <Link href={e.href} aria-current={atual(e.href) ? 'page' : undefined}>
-                  {e.menu}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <div className="ml-auto flex flex-wrap gap-2 xl:ml-0">
+        <div className="ml-auto flex flex-wrap gap-2">
           <button
             type="button"
             className="botao-faixa"
@@ -87,16 +71,6 @@ export function Cabecalho() {
           >
             <span className="aa" aria-hidden="true">Aa</span>
             <span className="sr-only">Ajustes de leitura</span>
-          </button>
-          <button
-            type="button"
-            className="botao-faixa xl:hidden"
-            aria-expanded={painel === 'menu'}
-            aria-controls="painel-menu"
-            onClick={() => setPainel(painel === 'menu' ? null : 'menu')}
-          >
-            <Icone nome={painel === 'menu' ? 'fechar' : 'menu'} />
-            Menu
           </button>
         </div>
       </div>
@@ -113,24 +87,6 @@ export function Cabecalho() {
         <p className="mt-2 text-sm opacity-90">A escolha fica salva neste aparelho.</p>
       </div>
 
-      <nav id="painel-menu" aria-label="Estações" hidden={painel !== 'menu'} className="nav-estacoes largura gutter pb-4 xl:hidden">
-        <ul className="grid gap-1 sm:grid-cols-2">
-          {estacoes.map((e) => (
-            <li key={e.href}>
-              <Link href={e.href} aria-current={atual(e.href) ? 'page' : undefined}>
-                <Icone nome={e.icone} />
-                {e.titulo}
-              </Link>
-            </li>
-          ))}
-          <li>
-            <Link href="/mapa" aria-current={atual('/mapa') ? 'page' : undefined}>
-              <Icone nome="mapa" />
-              Mapa da horta
-            </Link>
-          </li>
-        </ul>
-      </nav>
     </header>
   )
 }

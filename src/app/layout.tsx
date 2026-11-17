@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Atkinson_Hyperlegible_Next, Young_Serif } from 'next/font/google'
+import { BarraEstacoes } from '@/components/BarraEstacoes'
 import { Cabecalho } from '@/components/Cabecalho'
 import { Rodape } from '@/components/Rodape'
 import './globals.css'
@@ -45,6 +46,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
           Pular para o conteúdo
         </a>
         <Cabecalho />
+        <BarraEstacoes />
         <main id="conteudo" tabIndex={-1} className="flex-1 outline-none">
           {children}
         </main>

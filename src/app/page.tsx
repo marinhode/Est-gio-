@@ -2,7 +2,6 @@ import Link from 'next/link'
 import { Icone } from '@/components/Icone'
 import { RamoBotanico } from '@/components/RamoBotanico'
 import { obterCanteiro, obterPlanta } from '@/lib/conteudo'
-import { estacoes } from '@/lib/estacoes'
 
 const caminhos = [
   {
@@ -104,26 +103,8 @@ export default async function Inicio() {
         </div>
       </section>
 
-      {/* Estações */}
-      <section aria-labelledby="t-estacoes" className="largura gutter grid gap-6 py-14">
-        <h2 id="t-estacoes">Para onde ir</h2>
-        <ul className="grid gap-x-8 sm:grid-cols-2">
-          {estacoes.map((e) => (
-            <li key={e.href} className="border-t border-linha">
-              <Link href={e.href} className="group flex gap-4 py-5 text-tinta no-underline">
-                <Icone nome={e.icone} className="mt-1 size-7 text-azul" />
-                <span className="grid gap-1">
-                  <span className="font-titulo text-xl text-azul group-hover:underline">{e.titulo}</span>
-                  <span className="text-suave">{e.descricao}</span>
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
-
       {/* Cursos */}
-      <section aria-labelledby="t-cursos" className="largura gutter grid gap-6 pb-14">
+      <section aria-labelledby="t-cursos" className="largura gutter grid gap-6 py-14">
         <div className="grid gap-2">
           <h2 id="t-cursos">Quem faz o laboratório</h2>
           <p className="leitura text-suave">Quatro cursos olham para a mesma planta, cada um com suas perguntas.</p>
