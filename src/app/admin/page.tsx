@@ -40,7 +40,7 @@ async function Painel() {
   const conteudo: { titulo: string; icone: NomeIcone; href?: string }[] = [
     { titulo: 'Plantas e canteiros', icone: 'livro', href: '/admin/plantas' },
     { titulo: 'Paradas do tour', icone: 'tour' },
-    { titulo: 'Perguntas dos jogos', icone: 'jogos' },
+    { titulo: 'Perguntas dos jogos', icone: 'jogos', href: '/admin/jogos' },
     { titulo: 'Projetos acadêmicos', icone: 'pessoas' },
     { titulo: 'Textos das estações', icone: 'aroma' },
   ]
