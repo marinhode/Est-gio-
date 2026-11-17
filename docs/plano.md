@@ -1,5 +1,7 @@
 # Laboratório Sensorial Interativo — Plano de desenvolvimento
 
+> ⚠️ Plano original, substituído pela **Parte 6 do [conceito.md](conceito.md)**. Mantido como histórico.
+
 **Stack:** Next.js (App Router, TypeScript, Tailwind) + Supabase (Postgres, Auth, Storage) · deploy na Vercel
 **Equipe:** 1 dev (Engenharia de Software) · conteúdo vindo de Psicologia
 **Prazo:** 1 semana

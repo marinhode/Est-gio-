@@ -9,7 +9,7 @@ Documento construído por partes. Cada parte só avança após aprovação.
 | 3 | Jornadas | ✅ Aprovada |
 | 4 | Arquitetura da informação | ✅ Aprovada |
 | 5 | Identidade e tom | ✅ Aprovada (refinamentos durante o desenvolvimento) |
-| 6 | Escopo final | 🟡 Em discussão |
+| 6 | Escopo final | ✅ Aprovada |
 
 ---
 
@@ -189,7 +189,7 @@ Cada seção mostra o texto curto e um botão "Ler mais" para a explicação amp
 
 ---
 
-## Parte 6 — Escopo final (rascunho, em discussão)
+## Parte 6 — Escopo final
 
 ### Entra nesta entrega
 | Funcionalidade | Nível de acabamento |
