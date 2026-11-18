@@ -123,11 +123,12 @@ export default function Acessibilidade() {
           </section>
 
           {/* Recursos */}
-          <section aria-labelledby="t-recursos" className="leitura grid gap-6">
+          <section aria-labelledby="t-recursos" className="grid gap-4">
             <h2 id="t-recursos">O que o site oferece</h2>
+            <div className="grid items-start gap-4 md:grid-cols-2">
             {recursos.map((r) => (
-              <div key={r.titulo} className="grid gap-2">
-                <h3>{r.titulo}</h3>
+              <div key={r.titulo} className="bloco">
+                <h3 className="bloco-titulo">{r.titulo}</h3>
                 <ul className="grid list-disc gap-1.5 pl-5 marker:text-azul">
                   {r.itens.map((i) => (
                     <li key={i}>{i}</li>
@@ -135,11 +136,12 @@ export default function Acessibilidade() {
                 </ul>
               </div>
             ))}
+            </div>
           </section>
 
           {/* Limitações */}
-          <section aria-labelledby="t-limites" className="leitura grid gap-3">
-            <h2 id="t-limites">O que ainda falta</h2>
+          <section aria-labelledby="t-limites" className="bloco leitura">
+            <h2 id="t-limites" className="bloco-titulo !text-[1.5rem]">O que ainda falta</h2>
             <p>Preferimos ser claros sobre o que ainda não está pronto:</p>
             <ul className="grid list-disc gap-1.5 pl-5 marker:text-azul">
               {limitacoes.map((l) => (

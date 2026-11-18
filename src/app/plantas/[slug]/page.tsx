@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { AvisoExemplo } from '@/components/AvisoExemplo'
+import { Bloco } from '@/components/Bloco'
 import { Icone } from '@/components/Icone'
 import { ImagemRevelada } from '@/components/ImagemRevelada'
 import { Compartilhado } from '@/components/Transicao'
@@ -86,41 +87,47 @@ export default async function Ficha({ params }: PageProps<'/plantas/[slug]'>) {
       </nav>
 
       <div className="largura gutter grid gap-14 pt-10">
-        <section id="conheca" aria-labelledby="t-conheca" className="secao-ficha leitura grid gap-6">
+        <section id="conheca" aria-labelledby="t-conheca" className="secao-ficha grid gap-5">
           <h2 id="t-conheca" className="c-conheca flex items-center gap-2"><Icone nome="folha" className="size-7" />Conheça a planta</h2>
-          <div className="grid gap-2"><h3>Como ela é</h3><TextoSecao secao={planta.conhecendo} sobre="como ela é" /></div>
-          <div className="grid gap-2"><h3>Cultivo e sustentabilidade</h3><TextoSecao secao={planta.cultivo} sobre="cultivo" /></div>
-          <div className="grid gap-2"><h3>História e cultura</h3><TextoSecao secao={planta.historia} sobre="história e cultura" /></div>
+          <div className="grid items-start gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <Bloco titulo="Como ela é" icone="folha" cor="text-folha"><TextoSecao secao={planta.conhecendo} sobre="como ela é" /></Bloco>
+            <Bloco titulo="Cultivo e sustentabilidade" icone="folha" cor="text-folha"><TextoSecao secao={planta.cultivo} sobre="cultivo" /></Bloco>
+            <Bloco titulo="História e cultura" icone="livro" cor="text-folha"><TextoSecao secao={planta.historia} sobre="história e cultura" /></Bloco>
+          </div>
           {(planta.categorias.length > 0 || planta.caracteristicas.length > 0) && (
-            <ul className="flex flex-wrap gap-2" aria-label="Categorias e características">
-              {[...planta.categorias, ...planta.caracteristicas].map((t) => (
-                <li key={t} className="rounded-full border border-linha px-3 py-1 text-sm">{t}</li>
-              ))}
-            </ul>
+            <Bloco titulo="Características">
+              <ul className="flex flex-wrap gap-2" aria-label="Categorias e características">
+                {[...planta.categorias, ...planta.caracteristicas].map((t) => (
+                  <li key={t} className="rounded-full border border-linha bg-papel px-3 py-1 text-sm">{t}</li>
+                ))}
+              </ul>
+            </Bloco>
           )}
         </section>
 
         <section id="sinta" aria-labelledby="t-sinta" className="secao-ficha grid gap-6">
           <h2 id="t-sinta" className="c-sinta flex items-center gap-2"><Icone nome="aroma" className="size-7" />Explore a experiência sensorial</h2>
-          <div className="leitura grid gap-6">
-            <TextoSecao secao={planta.experiencia} sobre="a experiência sensorial" />
-            <div className="grid gap-2 rounded-md border-l-4 border-lavanda bg-superficie p-5">
+          <div className="grid items-start gap-4 md:grid-cols-2">
+            <Bloco titulo="O que se percebe" icone="aroma" cor="text-lavanda"><TextoSecao secao={planta.experiencia} sobre="a experiência sensorial" /></Bloco>
+            <div className="grid gap-2 rounded-[10px] border-2 border-lavanda bg-superficie p-5">
               <p className="c-sinta font-bold">Experimente</p>
               <p className="text-lg">{planta.atividade}</p>
             </div>
+          </div>
+          <div className="leitura grid gap-6">
             {planta.perguntas.map((p) => (
               <PerguntaReflexiva key={p} pergunta={p} sobre={planta.nomePopular} planta={planta.slug} />
             ))}
-            <div className="grid gap-2"><h3>Psicologia e bem-estar</h3><TextoSecao secao={planta.psicologia} sobre="psicologia e bem-estar" /></div>
+            <Bloco titulo="Psicologia e bem-estar" icone="pessoas" cor="text-lavanda"><TextoSecao secao={planta.psicologia} sobre="psicologia e bem-estar" /></Bloco>
           </div>
         </section>
 
         <section id="ciencia" aria-labelledby="t-ciencia" className="secao-ficha leitura grid gap-6">
           <h2 id="t-ciencia" className="c-ciencia flex items-center gap-2"><Icone nome="frasco" className="size-7" />Descubra o que a ciência pesquisa</h2>
           {planta.usos.length > 0 ? (
-            <ul className="grid gap-4">
+            <ul className="grid gap-3">
               {planta.usos.map((u) => (
-                <li key={u.texto} className="grid gap-1.5">
+                <li key={u.texto} className="bloco">
                   <Selo nivel={u.nivel} />
                   <p>{u.texto}</p>
                 </li>
@@ -130,8 +137,8 @@ export default async function Ficha({ params }: PageProps<'/plantas/[slug]'>) {
             <p className="text-suave">Ainda não há usos cadastrados para esta planta.</p>
           )}
           <p className="nota"><Link href="/ciencia">O que significa cada selo?</Link></p>
-          {planta.biomedicina && <div className="grid gap-2"><h3>Biomedicina</h3><TextoSecao secao={planta.biomedicina} sobre="biomedicina" /></div>}
-          {planta.farmacia && <div className="grid gap-2"><h3>Farmácia</h3><TextoSecao secao={planta.farmacia} sobre="farmácia" /></div>}
+          {planta.biomedicina && <Bloco titulo="Biomedicina" icone="frasco" cor="text-ciencia"><TextoSecao secao={planta.biomedicina} sobre="biomedicina" /></Bloco>}
+          {planta.farmacia && <Bloco titulo="Farmácia" icone="frasco" cor="text-ciencia"><TextoSecao secao={planta.farmacia} sobre="farmácia" /></Bloco>}
           {planta.alertas && (
             <div className="grid gap-2 rounded-md border-2 border-tinta p-4">
               <h3>Alertas de segurança</h3>

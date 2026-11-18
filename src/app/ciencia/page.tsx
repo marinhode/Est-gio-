@@ -139,13 +139,13 @@ export default function Ciencia() {
                 <span className="grid size-10 place-items-center rounded-full border-2 border-ciencia font-bold text-ciencia">{i + 1}</span>
                 {i < caminho.length - 1 && <span className="w-0.5 flex-1 bg-linha" />}
               </div>
-              <div className={`grid gap-3 ${i < caminho.length - 1 ? 'pb-8' : ''}`}>
-                <div className="pt-1.5">
+              <div className={`bloco mb-4 !gap-3 ${i < caminho.length - 1 ? '' : 'mb-0'}`}>
+                <div>
                   <Selo nivel={c.nivel} />
                 </div>
                 <p className="text-lg">{c.significa}</p>
                 <p className="text-suave">{c.exemplo}</p>
-                <p className="leitura rounded border-l-4 border-linha bg-superficie px-4 py-2 text-sm">
+                <p className="leitura rounded bg-papel px-4 py-2 text-sm">
                   <span className="font-bold">O que não significa: </span>
                   {c.naoSignifica}
                 </p>
@@ -207,10 +207,10 @@ export default function Ciencia() {
             substâncias assim para se defender e atrair polinizadores, e são elas que interessam aos laboratórios.
           </p>
         </div>
-        <dl className="grid gap-x-10 gap-y-6 md:grid-cols-2">
+        <dl className="grid items-start gap-4 md:grid-cols-2">
           {metodos.map((m) => (
-            <div key={m.titulo} className="grid content-start gap-1.5 border-t-2 border-ciencia pt-3">
-              <dt className="font-titulo text-[1.2rem]">{m.titulo}</dt>
+            <div key={m.titulo} className="bloco">
+              <dt className="bloco-titulo">{m.titulo}</dt>
               <dd>{m.texto}</dd>
             </div>
           ))}
@@ -229,8 +229,8 @@ export default function Ciencia() {
       </section>
 
       {/* No Brasil */}
-      <section aria-labelledby="t-brasil" className="leitura grid gap-3">
-        <h2 id="t-brasil">Plantas medicinais no Brasil</h2>
+      <section aria-labelledby="t-brasil" className="bloco leitura">
+        <h2 id="t-brasil" className="bloco-titulo !text-[1.5rem]">Plantas medicinais no Brasil</h2>
         <p>
           Desde 2006, o Brasil tem uma Política Nacional de Plantas Medicinais e Fitoterápicos, que busca garantir o uso
           seguro dessas plantas e valorizar o conhecimento tradicional. O Ministério da Saúde mantém uma lista de espécies

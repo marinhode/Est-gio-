@@ -95,9 +95,9 @@ export default async function Inicio() {
               Escaneie o QR Code de um canteiro ou escolha uma planta no site. Cada espécie se abre em três caminhos.
             </p>
           </div>
-          <ul className="grid gap-6 md:grid-cols-3">
+          <ul className="grid items-start gap-4 md:grid-cols-3">
             {caminhos.map((c) => (
-              <li key={c.titulo} className="grid content-start gap-2">
+              <li key={c.titulo} className="bloco !bg-papel">
                 <Icone nome={c.icone} className={`size-8 ${c.classe}`} />
                 <h3 className={c.classe}>{c.titulo}</h3>
                 <p>{c.texto}</p>
@@ -113,9 +113,9 @@ export default async function Inicio() {
           <h2 id="t-cursos">Quem faz o laboratório</h2>
           <p className="leitura text-suave">Quatro cursos olham para a mesma planta, cada um com suas perguntas.</p>
         </div>
-        <dl className="grid gap-x-8 gap-y-5 sm:grid-cols-2">
+        <dl className="grid items-start gap-4 sm:grid-cols-2">
           {cursos.map((c) => (
-            <div key={c.nome} className="grid content-start gap-1">
+            <div key={c.nome} className="bloco !gap-1">
               <dt className="font-bold">{c.nome}</dt>
               <dd className="text-suave">{c.papel}</dd>
             </div>

@@ -39,10 +39,10 @@ export default async function Tema({ params }: PageProps<'/sentidos/[tema]'>) {
       </header>
 
       <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)]">
-        <div className="leitura grid gap-8">
+        <div className="leitura grid gap-4">
           {tema.secoes.map((s) => (
-            <section key={s.titulo} className="grid gap-3">
-              <h2 className="text-[1.45rem]">{s.titulo}</h2>
+            <section key={s.titulo} className="bloco">
+              <h2 className="bloco-titulo">{s.titulo}</h2>
               {s.texto.map((p) => (
                 <p key={p.slice(0, 40)}>{p}</p>
               ))}
