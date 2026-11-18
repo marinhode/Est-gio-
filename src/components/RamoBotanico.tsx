@@ -8,10 +8,13 @@ export function RamoBotanico({ className = '' }: { className?: string }) {
   ]
   return (
     <svg viewBox="0 0 200 220" aria-hidden="true" focusable="false" className={className}>
-      <path d="M100 215 C100 160 98 100 102 20" fill="none" stroke="var(--folha)" strokeWidth="2.5" strokeLinecap="round" />
+      <path className="ramo-caule" d="M100 215 C100 160 98 100 102 20" fill="none" stroke="var(--folha)" strokeWidth="2.5" strokeLinecap="round" />
       <g fill="color-mix(in srgb, var(--folha) 20%, transparent)" stroke="var(--folha)" strokeWidth="2">
-        {folhas.map(([cx, cy, rx, ry, rot]) => (
-          <ellipse key={`${cx}-${cy}`} cx={cx} cy={cy} rx={rx} ry={ry} transform={`rotate(${rot} ${cx} ${cy})`} />
+        {folhas.map(([cx, cy, rx, ry, rot], i) => (
+          // Folhas brotam de baixo para cima: o índice define o atraso da animação
+          <g key={`${cx}-${cy}`} className="ramo-folha" style={{ '--i': Math.floor((folhas.length - 1 - i) / 2) } as React.CSSProperties}>
+            <ellipse cx={cx} cy={cy} rx={rx} ry={ry} transform={`rotate(${rot} ${cx} ${cy})`} />
+          </g>
         ))}
       </g>
     </svg>

@@ -38,6 +38,7 @@ export default async function Parada({ params }: PageProps<'/tour/[ordem]'>) {
             <li key={p.id}>
               <Link
                 href={`/tour/${p.ordem}`}
+                transitionTypes={p.ordem < parada.ordem ? ['nav-back'] : ['nav-forward']}
                 aria-current={p.id === parada.id ? 'step' : undefined}
                 aria-label={`Parada ${p.ordem}: ${p.titulo}`}
                 className={`grid size-11 place-items-center rounded-full border-2 font-bold no-underline ${p.id === parada.id ? 'border-azul bg-azul text-sobre-azul' : p.ordem < parada.ordem ? 'border-azul text-azul' : 'border-linha text-suave'}`}
@@ -82,10 +83,10 @@ export default async function Parada({ params }: PageProps<'/tour/[ordem]'>) {
       </div>
 
       <nav aria-label="Navegar pelo tour" className="flex flex-wrap items-center gap-3 border-t border-linha pt-5">
-        {anterior ? <Link href={`/tour/${anterior.ordem}`} className="btn btn-sec">Parada anterior</Link> : <Link href="/tour" className="btn btn-sec">Início do tour</Link>}
+        {anterior ? <Link href={`/tour/${anterior.ordem}`} transitionTypes={['nav-back']} className="btn btn-sec">Parada anterior</Link> : <Link href="/tour" transitionTypes={['nav-back']} className="btn btn-sec">Início do tour</Link>}
         <Link href="/mapa" className="btn btn-sec"><Icone nome="mapa" />Mapa da horta</Link>
         {proxima && (
-          <Link href={`/tour/${proxima.ordem}`} className="btn ml-auto">
+          <Link href={`/tour/${proxima.ordem}`} transitionTypes={['nav-forward']} className="btn ml-auto">
             Próxima: {proxima.titulo}
             <Icone nome="seta" />
           </Link>

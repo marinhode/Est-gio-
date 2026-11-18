@@ -53,7 +53,7 @@ export function BarraEstacoesBase({ caminho }: { caminho: string }) {
   }, [])
 
   return (
-    <nav aria-label="Estações" className="barra-estacoes">
+    <nav aria-label="Estações" className="barra-estacoes" style={{ viewTransitionName: 'barra-estacoes' }}>
       <div className="largura relative">
         <ul ref={trilho} onScroll={medir} className="trilho gutter">
           {itens.map((i) => {

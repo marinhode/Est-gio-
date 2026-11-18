@@ -35,7 +35,7 @@ export default async function Sentidos() {
             const tempo = t.experimente?.passos.reduce((s, p) => s + (p.segundos ?? 0), 0) ?? 0
             return (
               <li key={t.slug} className="border-t border-linha">
-                <Link href={`/sentidos/${t.slug}`} className="group grid gap-1.5 py-5 text-tinta no-underline">
+                <Link href={`/sentidos/${t.slug}`} transitionTypes={['nav-forward']} className="group grid gap-1.5 py-5 text-tinta no-underline">
                   <span className="font-titulo text-[1.35rem] text-lavanda group-hover:underline">{t.titulo}</span>
                   <span className="text-suave">{t.resumo}</span>
                   {t.experimente && (

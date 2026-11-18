@@ -259,3 +259,80 @@ textarea.campo { min-height: 6rem; resize: vertical; }
   background: var(--superficie); color: var(--tinta);
 }
 .janela::backdrop { background: color-mix(in srgb, #000000 55%, transparent); }
+
+/* ═════════════ Movimento ═════════════
+   Transições entre páginas (View Transitions), revelação de imagens e aberturas.
+   Tudo fica estático para quem pede menos movimento no aparelho. */
+:root {
+  --curva-saida: cubic-bezier(.4, 0, 1, 1);
+  --curva-entrada: cubic-bezier(.16, 1, .3, 1); /* desacelera no fim: chega com suavidade */
+}
+
+::view-transition { pointer-events: none; }
+
+/* Âncoras: cabeçalho e barra de estações não se movem */
+::view-transition-group(cabecalho), ::view-transition-group(barra-estacoes) { animation: none; z-index: 100; }
+::view-transition-old(cabecalho), ::view-transition-old(barra-estacoes) { display: none; }
+::view-transition-new(cabecalho), ::view-transition-new(barra-estacoes) { animation: none; }
+
+/* Página: a antiga sai rápido, a nova sobe com calma */
+::view-transition-old(.pagina-sai) { animation: 140ms var(--curva-saida) both vt-aparece reverse; }
+::view-transition-new(.pagina-entra) {
+  animation: 260ms ease-out 90ms both vt-aparece, 520ms var(--curva-entrada) both vt-sobe;
+}
+
+/* Percurso: avançar desliza para a esquerda, voltar para a direita */
+::view-transition-old(.nav-forward) { --desloca: -70px; animation: 150ms var(--curva-saida) both vt-aparece reverse, 420ms var(--curva-entrada) both vt-desliza reverse; }
+::view-transition-new(.nav-forward) { --desloca: 70px; animation: 240ms ease-out 120ms both vt-aparece, 480ms var(--curva-entrada) both vt-desliza; }
+::view-transition-old(.nav-back) { --desloca: 70px; animation: 150ms var(--curva-saida) both vt-aparece reverse, 420ms var(--curva-entrada) both vt-desliza reverse; }
+::view-transition-new(.nav-back) { --desloca: -70px; animation: 240ms ease-out 120ms both vt-aparece, 480ms var(--curva-entrada) both vt-desliza; }
+
+/* Foto compartilhada: cresce do cartão até a ficha */
+::view-transition-group(.morph) { animation-duration: 480ms; animation-timing-function: var(--curva-entrada); z-index: 50; }
+::view-transition-image-pair(.morph) { animation-name: vt-desfoca; }
+
+@keyframes vt-aparece { from { opacity: 0; filter: blur(4px); } to { opacity: 1; filter: blur(0); } }
+@keyframes vt-sobe { from { transform: translateY(18px); } to { transform: none; } }
+@keyframes vt-desliza { from { translate: var(--desloca) 0; } to { translate: 0 0; } }
+@keyframes vt-desfoca { 40% { filter: blur(3px); } }
+
+/* Imagens: entram com fade, leve zoom e desfoque se dissolvendo */
+.revela { opacity: 0; transform: scale(1.06); filter: blur(10px); }
+.revela[data-carregada="true"] { opacity: 1; transform: none; filter: none; }
+
+/* Ilustração do ramo: o caule se desenha e as folhas brotam em sequência */
+.ramo-caule { stroke-dasharray: 260; stroke-dashoffset: 0; }
+.ramo-folha { transform-box: fill-box; transform-origin: center; }
+
+/* Janela dos três caminhos: cresce a partir do centro */
+.janela { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .revela { transition: opacity 700ms ease-out, transform 1100ms var(--curva-entrada), filter 800ms ease-out; }
+  .ramo-caule { animation: ramo-desenha 1.1s var(--curva-entrada) both; }
+  .ramo-folha { animation: folha-brota 520ms var(--curva-entrada) both; animation-delay: calc(350ms + var(--i) * 90ms); }
+  @keyframes ramo-desenha { from { stroke-dashoffset: 260; } }
+  @keyframes folha-brota { from { opacity: 0; transform: scale(.2) rotate(-12deg); } }
+
+  .janela, .janela::backdrop { transition: opacity 220ms ease-out, transform 320ms var(--curva-entrada), overlay 320ms allow-discrete, display 320ms allow-discrete; }
+  .janela:not([open]) { opacity: 0; transform: scale(.94) translateY(8px); }
+  @starting-style { .janela[open] { opacity: 0; transform: scale(.94) translateY(8px); } .janela[open]::backdrop { opacity: 0; } }
+
+  /* "Ler mais" abre deslizando (navegadores com suporte a interpolate-size) */
+  :root { interpolate-size: allow-keywords; }
+  details::details-content { height: 0; overflow: clip; transition: height 360ms var(--curva-entrada), content-visibility 360ms allow-discrete; }
+  details[open]::details-content { height: auto; }
+
+  /* Pontos do tour aparecem um a um */
+  .marcador { animation: ponto-surge 480ms var(--curva-entrada) both; animation-delay: calc(250ms + var(--i, 0) * 110ms); }
+  @keyframes ponto-surge { from { opacity: 0; transform: translate(-50%, -50%) scale(.4); } }
+
+  /* Cartões do catálogo: a foto aproxima um pouco ao passar o mouse */
+  .cartao-foto img { transition: transform 600ms var(--curva-entrada); }
+  .cartao:hover .cartao-foto img { transform: scale(1.045); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*), ::view-transition-new(*), ::view-transition-group(*) { animation-duration: 0s !important; animation-delay: 0s !important; }
+  .revela { opacity: 1; transform: none; filter: none; }
+}

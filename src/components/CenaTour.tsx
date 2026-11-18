@@ -1,13 +1,13 @@
 'use client'
 
-import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { Icone } from '@/components/Icone'
+import { ImagemRevelada } from '@/components/ImagemRevelada'
 import { registrarEvento } from '@/lib/registro'
 import type { MarcadorTour, ParadaTour } from '@/lib/tipos'
 
-function Ponto({ m, sobreFoto, abrir }: { m: MarcadorTour; sobreFoto: boolean; abrir: (m: MarcadorTour) => void }) {
+function Ponto({ m, i = 0, sobreFoto, abrir }: { m: MarcadorTour; i?: number; sobreFoto: boolean; abrir: (m: MarcadorTour) => void }) {
   const conteudo = (
     <>
       <span aria-hidden="true" className="marcador-alvo"><Icone nome={m.planta ? 'folha' : 'pino'} className="size-4" /></span>
@@ -15,7 +15,7 @@ function Ponto({ m, sobreFoto, abrir }: { m: MarcadorTour; sobreFoto: boolean; a
     </>
   )
   const classe = sobreFoto ? 'marcador' : 'chip'
-  const estilo = sobreFoto ? { left: `${m.x}%`, top: `${m.y}%` } : undefined
+  const estilo = sobreFoto ? ({ left: `${m.x}%`, top: `${m.y}%`, '--i': i } as React.CSSProperties) : undefined
   if (m.planta) {
     return (
       <button type="button" className={classe} style={estilo} onClick={() => abrir(m)} aria-haspopup="dialog">
@@ -59,8 +59,8 @@ export function CenaTour({ parada }: { parada: ParadaTour }) {
       <div className="relative aspect-[16/10] w-full overflow-hidden rounded-md bg-[color-mix(in_srgb,var(--marca)_10%,var(--superficie))]">
         {parada.imagem ? (
           <>
-            <Image src={parada.imagem.src} alt={parada.imagem.alt} fill sizes="(min-width: 1024px) 66vw, 100vw" className="object-cover" priority />
-            {parada.marcadores.map((m) => (<Ponto key={m.id} m={m} sobreFoto abrir={abrir} />))}
+            <ImagemRevelada src={parada.imagem.src} alt={parada.imagem.alt} fill sizes="(min-width: 1024px) 66vw, 100vw" className="object-cover" priority />
+            {parada.marcadores.map((m, i) => (<Ponto key={m.id} m={m} i={i} sobreFoto abrir={abrir} />))}
           </>
         ) : (
           <div className="absolute inset-0 grid place-items-center gap-2 p-6 text-center" aria-hidden="true">

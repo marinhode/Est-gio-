@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Icone } from '@/components/Icone'
 import { RamoBotanico } from '@/components/RamoBotanico'
+import { Compartilhado } from '@/components/Transicao'
 import { obterCanteiro, obterPlanta } from '@/lib/conteudo'
 
 const caminhos = [
@@ -59,11 +60,14 @@ export default async function Inicio() {
         {destaque && (
           <Link
             href={`/plantas/${destaque.slug}`}
+            transitionTypes={['nav-forward']}
             className="group grid overflow-hidden rounded-md border border-linha bg-superficie text-tinta no-underline"
           >
-            <div className="grid place-items-center bg-[color-mix(in_srgb,var(--folha)_9%,var(--superficie))] py-6">
-              <RamoBotanico className="h-44 w-auto" />
-            </div>
+            <Compartilhado nome={`planta-${destaque.slug}`}>
+              <div className="grid place-items-center bg-[color-mix(in_srgb,var(--folha)_9%,var(--superficie))] py-6">
+                <RamoBotanico className="h-44 w-auto" />
+              </div>
+            </Compartilhado>
             <div className="grid gap-3 p-5">
               <p className="nota">Planta em destaque</p>
               <p>

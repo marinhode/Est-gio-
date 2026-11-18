@@ -33,6 +33,7 @@ export default async function Jogos() {
           <li key={j.slug}>
             <Link
               href={`/jogos/${j.slug}`}
+              transitionTypes={['nav-forward']}
               className="group grid h-full content-start gap-3 rounded-md border-2 border-linha bg-superficie p-6 text-tinta no-underline hover:border-azul"
             >
               <span className="nota">

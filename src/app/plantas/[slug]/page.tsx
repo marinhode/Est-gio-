@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { AvisoExemplo } from '@/components/AvisoExemplo'
 import { Icone } from '@/components/Icone'
+import { ImagemRevelada } from '@/components/ImagemRevelada'
+import { Compartilhado } from '@/components/Transicao'
 import { PerguntaReflexiva } from '@/components/PerguntaReflexiva'
 import { RamoBotanico } from '@/components/RamoBotanico'
 import { TextoSecao } from '@/components/Secao'
@@ -32,16 +33,18 @@ export default async function Ficha({ params }: PageProps<'/plantas/[slug]'>) {
     <article className="pb-8">
       {/* Abertura: o que a pessoa vê ao escanear o QR */}
       <header className="largura gutter grid gap-6 py-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:items-center md:py-12">
-        <figure className="relative m-0 grid aspect-[4/3] place-items-center overflow-hidden rounded-md bg-[color-mix(in_srgb,var(--folha)_10%,var(--superficie))]">
-          {planta.imagem ? (
-            <Image src={planta.imagem.src} alt={planta.imagem.alt} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" priority />
-          ) : (
-            <RamoBotanico className="h-3/4 w-auto" />
-          )}
-          {planta.imagem?.credito && <figcaption className="absolute right-2 bottom-2 rounded bg-superficie/90 px-2 py-0.5 text-xs">{planta.imagem.credito}</figcaption>}
-        </figure>
+        <Compartilhado nome={`planta-${planta.slug}`}>
+          <figure className="relative m-0 grid aspect-[4/3] place-items-center overflow-hidden rounded-md bg-[color-mix(in_srgb,var(--folha)_10%,var(--superficie))]">
+            {planta.imagem ? (
+              <ImagemRevelada src={planta.imagem.src} alt={planta.imagem.alt} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" priority />
+            ) : (
+              <RamoBotanico className="h-3/4 w-auto" />
+            )}
+            {planta.imagem?.credito && <figcaption className="absolute right-2 bottom-2 rounded bg-superficie/90 px-2 py-0.5 text-xs">{planta.imagem.credito}</figcaption>}
+          </figure>
+        </Compartilhado>
         <div className="grid gap-4">
-          <Link href="/plantas" className="inline-flex min-h-11 items-center gap-2 font-bold no-underline hover:underline">
+          <Link href="/plantas" transitionTypes={['nav-back']} className="inline-flex min-h-11 items-center gap-2 font-bold no-underline hover:underline">
             <Icone nome="livro" className="size-4" />
             Enciclopédia de plantas
           </Link>

@@ -28,7 +28,7 @@ export default async function Tema({ params }: PageProps<'/sentidos/[tema]'>) {
     <article className="largura gutter grid gap-10 py-10">
       <header className="leitura grid gap-4">
         <nav aria-label="Você está em">
-          <Link href="/sentidos" className="c-sinta inline-flex min-h-11 items-center gap-2 font-bold no-underline hover:underline">
+          <Link href="/sentidos" transitionTypes={['nav-back']} className="c-sinta inline-flex min-h-11 items-center gap-2 font-bold no-underline hover:underline">
             <Icone nome="aroma" className="size-4" />
             Experiências sensoriais
           </Link>
@@ -74,7 +74,7 @@ export default async function Tema({ params }: PageProps<'/sentidos/[tema]'>) {
             </ul>
           </section>
         )}
-        <Link href={`/sentidos/${proximo.slug}`} className="group grid max-w-md gap-1 text-tinta no-underline">
+        <Link href={`/sentidos/${proximo.slug}`} transitionTypes={['nav-forward']} className="group grid max-w-md gap-1 text-tinta no-underline">
           <span className="nota">Próximo tema</span>
           <span className="flex items-center gap-2 font-titulo text-xl text-lavanda group-hover:underline">
             {proximo.titulo}

@@ -19,7 +19,7 @@ export default async function Tour() {
           Uma visita guiada em {paradas.length} paradas. Em cada uma, toque nos pontos destacados para conhecer canteiros e plantas.
         </p>
         <div className="flex flex-wrap gap-3">
-          {paradas[0] && <Link href={`/tour/${paradas[0].ordem}`} className="btn"><Icone nome="tour" />Começar o tour</Link>}
+          {paradas[0] && <Link href={`/tour/${paradas[0].ordem}`} transitionTypes={['nav-forward']} className="btn"><Icone nome="tour" />Começar o tour</Link>}
           <Link href="/tour/lista" className="btn btn-sec">Ver o tour em lista</Link>
         </div>
         <p className="nota">A versão em lista traz o mesmo conteúdo sem depender de imagens, para leitores de tela ou conexões lentas.</p>
@@ -27,7 +27,7 @@ export default async function Tour() {
       <ol className="grid gap-3 md:grid-cols-5">
         {paradas.map((p) => (
           <li key={p.id}>
-            <Link href={`/tour/${p.ordem}`} className="group grid h-full content-start gap-1 rounded-md border border-linha bg-superficie p-4 text-tinta no-underline hover:border-azul">
+            <Link href={`/tour/${p.ordem}`} transitionTypes={['nav-forward']} className="group grid h-full content-start gap-1 rounded-md border border-linha bg-superficie p-4 text-tinta no-underline hover:border-azul">
               <span className="font-titulo text-3xl text-azul">{p.ordem}</span>
               <span className="font-bold group-hover:underline">{p.titulo}</span>
             </Link>

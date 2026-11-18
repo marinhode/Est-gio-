@@ -23,7 +23,7 @@ export default async function PaginaJogo({ params }: PageProps<'/jogos/[jogo]'>)
     <div className="largura gutter grid gap-8 py-10">
       <header className="leitura grid gap-4">
         <nav aria-label="Você está em">
-          <Link href="/jogos" className="inline-flex min-h-11 items-center gap-2 font-bold no-underline hover:underline">
+          <Link href="/jogos" transitionTypes={['nav-back']} className="inline-flex min-h-11 items-center gap-2 font-bold no-underline hover:underline">
             <Icone nome="jogos" className="size-4" />
             Jogos e desafios
           </Link>

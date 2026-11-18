@@ -47,6 +47,7 @@ for (const tema of ['light', 'dark']) {
       await p.goto(BASE + rota)
       await p.waitForTimeout(250)
       await acoes[rota]?.(p)
+      await p.waitForTimeout(700) // espera as animações terminarem antes de medir contraste
       await p.addScriptTag({ content: axe })
       const { violations } = await p.evaluate((regras) => window.axe.run(document, { runOnly: { type: 'tag', values: regras } }), REGRAS)
       for (const v of violations) {

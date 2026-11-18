@@ -1,9 +1,10 @@
 'use client'
 
-import Image from 'next/image'
 import Link from 'next/link'
 import { useDeferredValue, useState } from 'react'
+import { ImagemRevelada } from '@/components/ImagemRevelada'
 import { RamoBotanico } from '@/components/RamoBotanico'
+import { Compartilhado } from '@/components/Transicao'
 import type { Canteiro, Planta } from '@/lib/tipos'
 
 const normalizar = (t: string) => t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
@@ -60,14 +61,16 @@ export function Catalogo({ plantas, canteiros }: { plantas: Planta[]; canteiros:
             const c = nomeCanteiro(p.canteiroId)
             return (
               <li key={p.slug}>
-                <Link href={`/plantas/${p.slug}`} className="group grid h-full overflow-hidden rounded-md border border-linha bg-superficie text-tinta no-underline hover:border-azul">
-                  <span className="relative grid aspect-[4/3] place-items-center bg-[color-mix(in_srgb,var(--folha)_9%,var(--superficie))]">
-                    {p.imagem ? (
-                      <Image src={p.imagem.src} alt="" fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="object-cover" />
-                    ) : (
-                      <RamoBotanico className="h-3/4 w-auto" />
-                    )}
-                  </span>
+                <Link href={`/plantas/${p.slug}`} transitionTypes={['nav-forward']} className="cartao group grid h-full overflow-hidden rounded-md border border-linha bg-superficie text-tinta no-underline hover:border-azul">
+                  <Compartilhado nome={`planta-${p.slug}`}>
+                    <span className="cartao-foto relative grid aspect-[4/3] place-items-center overflow-hidden bg-[color-mix(in_srgb,var(--folha)_9%,var(--superficie))]">
+                      {p.imagem ? (
+                        <ImagemRevelada src={p.imagem.src} alt="" fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="object-cover" />
+                      ) : (
+                        <RamoBotanico className="h-3/4 w-auto" />
+                      )}
+                    </span>
+                  </Compartilhado>
                   <span className="grid content-start gap-1 p-4">
                     <span className="font-titulo text-xl text-azul group-hover:underline">{p.nomePopular}</span>
                     <em className="text-suave">{p.nomeCientifico}</em>
