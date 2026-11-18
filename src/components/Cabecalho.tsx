@@ -29,9 +29,9 @@ export function CabecalhoBase({ caminho }: { caminho: string }) {
   return (
     <header className="faixa" style={{ viewTransitionName: 'cabecalho' }}>
       <div className="largura gutter flex flex-wrap items-center gap-x-5 gap-y-3 py-3">
-        <Link href="/" className="flex items-center gap-3 no-underline" aria-label="Laboratório Sensorial Interativo, página inicial">
+        <Link href="/" draggable={false} className="flex items-center gap-3 no-underline" aria-label="Laboratório Sensorial Interativo, página inicial">
           <span className="logo-placa">
-            <Image src="/logo-unicatolica.png" alt="UniCatólica" width={720} height={188} className="w-28 sm:w-32" priority />
+            <Image src="/logo-unicatolica.png" draggable={false} alt="UniCatólica" width={720} height={188} className="w-28 sm:w-32" priority />
           </span>
           <span className="hidden font-titulo text-[1.05rem] leading-tight sm:block">
             Laboratório Sensorial

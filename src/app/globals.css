@@ -511,3 +511,10 @@ textarea.campo { min-height: 6rem; resize: vertical; }
 .marco-num { transform: rotate(45deg); font-variant-numeric: tabular-nums; } /* o marco é um pino girado; o número volta a ficar reto */
 .trilha [data-estado="feito"] .marco { border-color: var(--azul); color: var(--azul); }
 .trilha [data-estado="atual"] .marco { border-color: var(--azul); background: var(--azul); color: var(--sobre-azul); }
+
+/* Elementos de navegação não viram "cópia arrastável" ao segurar o dedo (nem menu de link no iOS).
+   A rolagem lateral da barra continua funcionando normalmente. */
+.barra-estacoes, .barra-estacoes *, .faixa a, .faixa img, .trilha, .trilha *, .placa-chapa, .placa-chapa *, .gaveta-item, .gaveta-item * {
+  -webkit-user-drag: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
+}
+.trilho { touch-action: pan-x pan-y; overscroll-behavior: contain; }
