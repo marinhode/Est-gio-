@@ -33,22 +33,27 @@ export default async function Parada({ params }: PageProps<'/tour/[ordem]'>) {
     <div className="largura gutter grid gap-6 py-8">
       {/* Progresso: a ordem das paradas é o próprio percurso */}
       <nav aria-label="Paradas do tour">
-        <ol className="flex flex-wrap items-center gap-2">
-          {paradas.map((p) => (
-            <li key={p.id}>
-              <Link
-                href={`/tour/${p.ordem}`}
-                transitionTypes={p.ordem < parada.ordem ? ['nav-back'] : ['nav-forward']}
-                aria-current={p.id === parada.id ? 'step' : undefined}
-                aria-label={`Parada ${p.ordem}: ${p.titulo}`}
-                className={`grid size-11 place-items-center rounded-full border-2 font-bold no-underline ${p.id === parada.id ? 'border-azul bg-azul text-sobre-azul' : p.ordem < parada.ordem ? 'border-azul text-azul' : 'border-linha text-suave'}`}
-              >
-                {p.ordem}
-              </Link>
-            </li>
-          ))}
-          <li className="ml-auto"><Link href="/tour/lista" className="inline-flex min-h-11 items-center text-sm">Ver em lista</Link></li>
-        </ol>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <ol className="trilha">
+            {paradas.map((p) => {
+              const estado = p.id === parada.id ? 'atual' : p.ordem < parada.ordem ? 'feito' : 'adiante'
+              return (
+                <li key={p.id} data-estado={estado}>
+                  <Link
+                    href={`/tour/${p.ordem}`}
+                    transitionTypes={p.ordem < parada.ordem ? ['nav-back'] : ['nav-forward']}
+                    aria-current={estado === 'atual' ? 'step' : undefined}
+                    aria-label={`Parada ${p.ordem}: ${p.titulo}`}
+                    className="marco"
+                  >
+                    <span className="marco-num">{p.ordem}</span>
+                  </Link>
+                </li>
+              )
+            })}
+          </ol>
+          <Link href="/tour/lista" className="inline-flex min-h-11 items-center text-sm">Ver em lista</Link>
+        </div>
       </nav>
 
       <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">

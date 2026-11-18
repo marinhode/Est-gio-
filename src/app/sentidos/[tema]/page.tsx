@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { AtividadeGuiada } from '@/components/AtividadeGuiada'
 import { AvisoExemplo } from '@/components/AvisoExemplo'
-import { Icone } from '@/components/Icone'
 import { PerguntaReflexiva } from '@/components/PerguntaReflexiva'
 import { listarTemas, obterTema } from '@/lib/conteudo'
 
@@ -28,9 +27,8 @@ export default async function Tema({ params }: PageProps<'/sentidos/[tema]'>) {
     <article className="largura gutter grid gap-10 py-10">
       <header className="leitura grid gap-4">
         <nav aria-label="Você está em">
-          <Link href="/sentidos" transitionTypes={['nav-back']} className="c-sinta inline-flex min-h-11 items-center gap-2 font-bold no-underline hover:underline">
-            <Icone nome="aroma" className="size-4" />
-            Experiências sensoriais
+          <Link href="/sentidos" transitionTypes={['nav-back']} className="text-sm">
+            Todos os temas
           </Link>
         </nav>
         <h1 className="text-[2.1rem] sm:text-[2.6rem]">{tema.titulo}</h1>

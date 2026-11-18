@@ -98,7 +98,7 @@ export function Diario() {
         ).map(([id, rotulo, valor, mudar]) => (
           <div key={id} className="grid gap-1">
             <label htmlFor={id} className="font-bold">{rotulo}</label>
-            <textarea id={id} className="campo !min-h-20" value={valor} onChange={(e) => mudar(e.target.value)} maxLength={600} />
+            <textarea id={id} className="campo campo-pautado" rows={3} value={valor} onChange={(e) => mudar(e.target.value)} maxLength={600} />
           </div>
         ))}
 
@@ -128,7 +128,7 @@ export function Diario() {
 
         <ol className="grid gap-4">
           {registros.map((r) => (
-            <li key={r.id} className="grid gap-3 rounded-md border border-linha bg-superficie p-5">
+            <li key={r.id} className="folha-caderno">
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <p className="font-titulo text-lg">{r.sobre ?? (r.pergunta ? 'Pergunta para reflexão' : 'Registro')}</p>
                 <time dateTime={r.criadoEm} className="nota">{formatoData.format(new Date(r.criadoEm))}</time>

@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Diario } from '@/components/Diario'
-import { Icone } from '@/components/Icone'
 
 export const metadata: Metadata = {
   title: 'Diário sensorial',
@@ -13,8 +12,7 @@ export default function PaginaDiario() {
     <div className="largura gutter grid gap-8 py-10">
       <header className="leitura grid gap-4">
         <nav aria-label="Você está em">
-          <Link href="/sentidos" className="c-sinta inline-flex min-h-11 items-center gap-2 font-bold no-underline hover:underline">
-            <Icone nome="aroma" className="size-4" />
+          <Link href="/sentidos" transitionTypes={['nav-back']} className="text-sm">
             Experiências sensoriais
           </Link>
         </nav>

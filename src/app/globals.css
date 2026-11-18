@@ -436,3 +436,78 @@ textarea.campo { min-height: 6rem; resize: vertical; }
   .placa-chapa { transition: transform 500ms var(--curva-entrada); }
   .placa-chapa:hover { transform: rotate(0deg) translateY(-3px); }
 }
+
+/* ═════════════ Caderno de campo (estação Sentidos) ═════════════ */
+:root { --pauta: 1.75rem; --pauta-cor: color-mix(in srgb, var(--ciencia) 22%, transparent); --margem-cor: color-mix(in srgb, var(--lavanda) 45%, transparent); }
+
+/* Folha pautada: linhas horizontais no ritmo do texto e a linha vertical da margem */
+.folha-caderno {
+  display: grid; gap: 0; position: relative; padding: calc(var(--pauta) * .5) 1.25rem calc(var(--pauta) * .75) 3.25rem;
+  line-height: var(--pauta); background-color: var(--superficie);
+  background-image:
+    linear-gradient(90deg, transparent 2.35rem, var(--margem-cor) 2.35rem, var(--margem-cor) calc(2.35rem + 2px), transparent calc(2.35rem + 2px)),
+    linear-gradient(to bottom, transparent calc(var(--pauta) - 1px), var(--pauta-cor) calc(var(--pauta) - 1px));
+  background-size: 100% 100%, 100% var(--pauta);
+  background-position: 0 0, 0 calc(var(--pauta) * .5);
+  border: 1px solid var(--linha); border-radius: 2px 6px 6px 2px;
+  box-shadow: 0 10px 22px -20px color-mix(in srgb, var(--tinta) 60%, transparent);
+}
+.folha-caderno > * { margin: 0; }
+.folha-caderno p, .folha-caderno dd, .folha-caderno dt, .folha-caderno time { line-height: var(--pauta); }
+.folha-caderno .font-titulo { line-height: var(--pauta); }
+
+/* Escrever sobre as pautas */
+.campo-pautado {
+  line-height: var(--pauta); padding-block: 0; min-height: calc(var(--pauta) * 3 + 2px) !important;
+  background-image: linear-gradient(to bottom, transparent calc(var(--pauta) - 1px), var(--pauta-cor) calc(var(--pauta) - 1px));
+  background-size: 100% var(--pauta); background-attachment: local;
+}
+
+/* Capa do caderno com elástico: o convite para abrir o diário */
+.capa-caderno {
+  position: relative; display: grid; gap: 1rem; align-items: center; overflow: hidden;
+  padding: 1.75rem 4rem 1.75rem 2rem; color: var(--sobre-folha);
+  background: var(--lavanda); border-radius: 6px 16px 16px 6px;
+  box-shadow: inset 10px 0 0 color-mix(in srgb, #000000 18%, var(--lavanda)), 0 14px 30px -20px color-mix(in srgb, var(--tinta) 70%, transparent);
+}
+.capa-caderno::after {
+  content: ""; position: absolute; top: 0; bottom: 0; right: 2rem; width: .7rem;
+  background: color-mix(in srgb, #000000 35%, var(--lavanda)); box-shadow: inset 2px 0 0 color-mix(in srgb, #FFFFFF 18%, transparent);
+}
+@media (min-width: 768px) { .capa-caderno { grid-template-columns: 1fr auto; padding: 2.25rem 5rem 2.25rem 2.75rem; } }
+
+/* ═════════════ Fichas de laboratório e carimbo (Jogos) ═════════════ */
+.ficha-pergunta {
+  position: relative; padding: 1.5rem 1.4rem 1.4rem 1.6rem; background: var(--superficie);
+  border: 1px solid var(--linha); border-radius: 2px;
+  background-image: linear-gradient(to bottom, transparent 2.1rem, color-mix(in srgb, var(--azul) 35%, transparent) 2.1rem, color-mix(in srgb, var(--azul) 35%, transparent) calc(2.1rem + 1px), transparent calc(2.1rem + 1px));
+  box-shadow: 0 12px 24px -22px color-mix(in srgb, var(--tinta) 65%, transparent);
+}
+.ficha-pergunta::before { content: ""; position: absolute; top: .7rem; left: 50%; width: .8rem; height: .8rem; margin-left: -.4rem; border-radius: 50%; background: var(--papel); border: 1px solid var(--linha); }
+.ficha-pergunta .enunciado { padding-top: 1.4rem; }
+
+.carimbo {
+  position: absolute; top: .9rem; right: .9rem; padding: .15rem .7rem .25rem;
+  font-family: var(--font-titulo); font-size: 1.35rem; line-height: 1.1; color: var(--azul);
+  border: 4px double currentColor; border-radius: 6px; transform: rotate(-9deg); opacity: .9;
+  mix-blend-mode: multiply;
+}
+@media (prefers-color-scheme: dark) { .carimbo { mix-blend-mode: normal; } }
+@media (prefers-reduced-motion: no-preference) {
+  .carimbo { animation: carimbar 300ms cubic-bezier(.2, 1.4, .4, 1) both; }
+  @keyframes carimbar { from { opacity: 0; transform: rotate(-9deg) scale(1.9); } 60% { opacity: .95; } }
+}
+
+/* ═════════════ Trilha do tour: marcos ligados por caminho tracejado ═════════════ */
+.trilha { display: flex; align-items: center; flex-wrap: wrap; row-gap: .5rem; }
+.trilha li { display: flex; align-items: center; }
+.trilha li + li::before { content: ""; width: clamp(1rem, 4vw, 2.5rem); border-top: 3px dashed var(--linha); }
+.trilha li[data-estado="feito"] + li::before, .trilha li[data-estado="feito"] + li[data-estado="atual"]::before { border-top-style: solid; border-color: var(--azul); }
+.marco {
+  display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: 50% 50% 50% 8px;
+  font-weight: 700; text-decoration: none; border: 2px solid var(--linha); color: var(--suave); background: var(--superficie);
+  transform: rotate(-45deg);
+}
+.marco-num { transform: rotate(45deg); font-variant-numeric: tabular-nums; } /* o marco é um pino girado; o número volta a ficar reto */
+.trilha [data-estado="feito"] .marco { border-color: var(--azul); color: var(--azul); }
+.trilha [data-estado="atual"] .marco { border-color: var(--azul); background: var(--azul); color: var(--sobre-azul); }

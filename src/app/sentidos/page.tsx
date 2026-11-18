@@ -54,7 +54,7 @@ export default async function Sentidos() {
         </ul>
       </section>
 
-      <section aria-labelledby="t-diario" className="grid gap-4 rounded-md bg-lavanda p-6 text-sobre-folha sm:p-8 md:grid-cols-[1fr_auto] md:items-center">
+      <section aria-labelledby="t-diario" className="capa-caderno">
         <div className="grid gap-2">
           <h2 id="t-diario">Diário sensorial</h2>
           <p className="leitura opacity-95">

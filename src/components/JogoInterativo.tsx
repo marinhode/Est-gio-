@@ -124,6 +124,8 @@ export function JogoInterativo({ jogo }: { jogo: Jogo }) {
 
   const respondida = fase === 'resposta'
   const acertou = escolha === pergunta.correta
+  // Carimbo batido na explicação: em mitos e verdades, o veredito; no quiz individual, o resultado
+  const carimbo = !respondida ? null : mito ? pergunta.opcoes[pergunta.correta] : modo === 'individual' ? (acertou ? 'Certo' : 'Quase') : null
 
   return (
     <div className={`grid gap-6 ${modo === 'turma' ? 'modo-turma' : ''}`}>
@@ -143,9 +145,11 @@ export function JogoInterativo({ jogo }: { jogo: Jogo }) {
         </div>
       </div>
 
-      <h2 ref={tituloPergunta} tabIndex={-1} className="enunciado outline-none">
-        {mito ? <>&ldquo;{pergunta.enunciado}&rdquo;</> : pergunta.enunciado}
-      </h2>
+      <div className="ficha-pergunta">
+        <h2 ref={tituloPergunta} tabIndex={-1} className="enunciado outline-none">
+          {mito ? <>&ldquo;{pergunta.enunciado}&rdquo;</> : pergunta.enunciado}
+        </h2>
+      </div>
 
       {/* Alternativas */}
       <ul className={`grid gap-3 ${mito ? 'sm:grid-cols-3' : ''}`}>
@@ -183,7 +187,12 @@ export function JogoInterativo({ jogo }: { jogo: Jogo }) {
 
       {/* Explicação */}
       {respondida && (
-        <div id="feedback" className="grid gap-3 rounded-md border-l-4 border-azul bg-superficie p-5">
+        <div id="feedback" className="relative grid gap-3 rounded-[4px] border border-linha bg-superficie p-5 pr-28 max-sm:pr-5 max-sm:pt-16">
+          {carimbo && (
+            <span className="carimbo" aria-hidden="true">
+              {carimbo}
+            </span>
+          )}
           <p ref={tituloResposta} tabIndex={-1} className="font-titulo text-[1.35rem] outline-none">
             {modo === 'turma'
               ? `Resposta: ${pergunta.opcoes[pergunta.correta]}`
