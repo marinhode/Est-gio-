@@ -120,12 +120,22 @@ em.cientifico, .cientifico { font-style: italic; }
   box-shadow: 0 6px 12px -10px color-mix(in srgb, var(--tinta) 45%, transparent);
 }
 .trilho {
-  display: flex; gap: .5rem; overflow-x: auto; padding-block: .6rem;
+  display: flex; gap: .25rem; overflow-x: auto; padding-block: 0;
   scroll-snap-type: x proximity; scrollbar-width: none; overscroll-behavior-x: contain;
   scroll-padding-inline: max(16px, env(safe-area-inset-left, 0px));
 }
 .trilho::-webkit-scrollbar { display: none; }
 .trilho > li { flex: none; scroll-snap-align: start; }
+/* Abas de fichário: o traço sob o nome marca a estação atual */
+.aba {
+  display: inline-flex; align-items: center; gap: .45rem; min-height: calc(44px + 1.2rem); padding: 0 .85rem;
+  color: var(--suave); font-weight: 700; text-decoration: none; white-space: nowrap;
+  border-bottom: 3px solid transparent; margin-bottom: -1px;
+}
+.aba:hover { color: var(--tinta); border-bottom-color: var(--linha); }
+.aba[aria-current="page"] { color: var(--azul); border-bottom-color: var(--azul); }
+.aba svg { opacity: .85; }
+
 .chip {
   font: inherit; cursor: pointer;
   display: inline-flex; align-items: center; gap: .4rem; min-height: 44px; padding: .35rem 1rem;
@@ -149,7 +159,7 @@ em.cientifico, .cientifico { font-style: italic; }
 /* ───────────── Blocos de leitura ───────────── */
 .bloco {
   display: grid; align-content: start; gap: .6rem;
-  background: var(--superficie); border: 1px solid var(--linha); border-radius: 10px;
+  background: var(--superficie); border: 1px solid var(--linha); border-radius: 4px;
   padding: 1.15rem 1.25rem 1.25rem;
 }
 .bloco-titulo { display: flex; align-items: center; gap: .5rem; font-family: var(--font-titulo); font-size: 1.2rem; line-height: 1.25; }
@@ -336,12 +346,93 @@ textarea.campo { min-height: 6rem; resize: vertical; }
   .marcador { animation: ponto-surge 480ms var(--curva-entrada) both; animation-delay: calc(250ms + var(--i, 0) * 110ms); }
   @keyframes ponto-surge { from { opacity: 0; transform: translate(-50%, -50%) scale(.4); } }
 
-  /* Cartões do catálogo: a foto aproxima um pouco ao passar o mouse */
-  .cartao-foto img { transition: transform 600ms var(--curva-entrada); }
-  .cartao:hover .cartao-foto img { transform: scale(1.045); }
 }
 
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-old(*), ::view-transition-new(*), ::view-transition-group(*) { animation-duration: 0s !important; animation-delay: 0s !important; }
   .revela { opacity: 1; transform: none; filter: none; }
+}
+
+/* ═════════════ Exsicata: a planta presa à folha de herbário ═════════════ */
+.exsicata {
+  --fita: color-mix(in srgb, var(--destaque) 22%, color-mix(in srgb, var(--papel) 70%, transparent));
+  margin: 0; display: grid; gap: .9rem; padding: 1rem 1rem 1.1rem;
+  background: var(--superficie); border: 1px solid var(--linha); border-radius: 2px;
+  box-shadow: 0 1px 0 var(--linha), 0 14px 28px -22px color-mix(in srgb, var(--tinta) 55%, transparent);
+}
+.exsicata-especime {
+  position: relative; aspect-ratio: 4 / 3; display: grid; place-items: center; overflow: visible;
+  background: color-mix(in srgb, var(--folha) 7%, var(--superficie));
+}
+.exsicata-especime > img { border-radius: 1px; }
+.exsicata-ramo { height: 82%; width: auto; }
+/* Fitas adesivas nos cantos, translúcidas como fita de papel */
+.fita { position: absolute; z-index: 2; width: 4.2rem; height: 1.15rem; background: var(--fita); border: 1px solid color-mix(in srgb, var(--tinta) 8%, transparent); }
+.fita-a { top: -.45rem; left: 12%; transform: rotate(-4deg); }
+.fita-b { bottom: -.45rem; right: 14%; transform: rotate(3deg); }
+/* Etiqueta da coleção: campos empilhados, como a etiqueta datilografada do herbário */
+.etiqueta-herbario {
+  justify-self: end; width: min(100%, 17rem); display: grid; gap: .1rem;
+  padding: .55rem .75rem .6rem; border: 1px solid var(--tinta); background: var(--superficie);
+  font-size: .82rem; line-height: 1.4; color: var(--tinta);
+}
+.etiqueta-tombo { font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: .04em; color: var(--azul); }
+.etiqueta-especie { font-size: .95rem; }
+.etiqueta-colecao { color: var(--suave); font-size: .75rem; margin-top: .2rem; }
+.etiqueta-nome { font-family: var(--font-titulo); font-size: 1.15rem; line-height: 1.2; }
+.exsicata-mini { padding: .7rem .7rem .8rem; gap: .7rem; }
+.exsicata-mini .fita { width: 3rem; height: .9rem; }
+.exsicata-mini .etiqueta-herbario { justify-self: stretch; width: auto; }
+
+.titulo-planta { font-size: clamp(2.8rem, 9vw, 4.6rem); line-height: 1; letter-spacing: -.01em; }
+
+/* Topo da ficha: no celular, nome antes da exsicata; no computador, exsicata à esquerda */
+.ficha-topo { display: grid; gap: 1.5rem; grid-template-areas: "titulo" "exsicata" "detalhes"; }
+.ficha-titulo { grid-area: titulo; }
+.ficha-exsicata { grid-area: exsicata; }
+.ficha-detalhes { grid-area: detalhes; }
+@media (min-width: 768px) {
+  .ficha-topo { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); grid-template-areas: "exsicata titulo" "exsicata detalhes"; column-gap: 3rem; row-gap: 1.25rem; align-items: start; }
+  .ficha-titulo { align-self: end; }
+}
+
+/* Gaveta do herbário: as exsicatas lado a lado; ao passar o mouse, a folha levanta um pouco da gaveta */
+.gaveta { display: grid; gap: 1.5rem 1.25rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 15.5rem), 1fr)); }
+.gaveta-item { display: block; color: var(--tinta); text-decoration: none; border-radius: 2px; }
+.gaveta-item:hover .etiqueta-nome { text-decoration: underline; text-underline-offset: .15em; }
+.gaveta-item:hover .exsicata { border-color: var(--azul); }
+
+/* ═════════════ Placa de canteiro (abertura da página inicial) ═════════════
+   Objeto físico: mantém as cores reais (chapa branca, borda azul, estaca de madeira) nos dois temas. */
+.placa-cena { display: grid; justify-items: center; padding-top: .5rem; }
+.placa-chapa {
+  position: relative; z-index: 1; display: grid; justify-items: center; gap: .15rem; width: min(100%, 17.5rem);
+  padding: 1.1rem 1.25rem 1rem; text-align: center; text-decoration: none;
+  background: #FFFFFF; color: #10151F; border: 4px solid #23409A; border-radius: 12px;
+  box-shadow: 0 2px 0 #1A2F80, 0 18px 30px -18px rgba(16, 21, 31, .55);
+  transform: rotate(-2.5deg); transform-origin: 50% 120%;
+}
+.placa-chapa:focus-visible { outline: 3px solid var(--foco); outline-offset: 6px; }
+.placa-numero {
+  position: absolute; top: -.9rem; right: -.9rem; display: grid; place-items: center; width: 2.4rem; height: 2.4rem;
+  background: #2E5B39; color: #FFFFFF; border: 3px solid #FFFFFF; border-radius: 50%; font-weight: 700;
+  box-shadow: 0 2px 6px rgba(16, 21, 31, .3);
+}
+.placa-colecao { font-size: .78rem; font-weight: 700; color: #23409A; }
+.placa-nome-popular { font-family: var(--font-titulo); font-size: 2.2rem; line-height: 1.05; }
+.placa-nome-cientifico { font-size: .95rem; color: #3D4654; }
+.placa-codigo { display: block; margin: .7rem 0 .45rem; padding: .45rem; border: 1px solid #CBD3D9; border-radius: 6px; }
+.placa-qr-img { display: block; width: 8.5rem; height: 8.5rem; }
+.placa-qr-img svg { width: 100%; height: 100%; display: block; }
+.placa-qr-vazio { background: repeating-linear-gradient(45deg, #EEF1F4 0 6px, #FFFFFF 6px 12px); }
+.placa-instrucao { font-size: .85rem; font-weight: 700; }
+.placa-estaca {
+  width: 1.15rem; height: 6.5rem; margin-top: -.4rem; transform: rotate(-2.5deg); transform-origin: top;
+  background: linear-gradient(90deg, #5E4630, #8B6B4A 35%, #7A5C3E 70%, #5E4630);
+  clip-path: polygon(0 0, 100% 0, 100% 86%, 50% 100%, 0 86%);
+}
+.placa-solo { width: 9rem; height: 1rem; margin-top: -.5rem; border-radius: 50%; background: radial-gradient(closest-side, color-mix(in srgb, var(--folha) 45%, transparent), transparent); }
+@media (prefers-reduced-motion: no-preference) {
+  .placa-chapa { transition: transform 500ms var(--curva-entrada); }
+  .placa-chapa:hover { transform: rotate(0deg) translateY(-3px); }
 }

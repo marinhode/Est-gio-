@@ -78,7 +78,6 @@ export default async function Tema({ params }: PageProps<'/sentidos/[tema]'>) {
           <span className="nota">Próximo tema</span>
           <span className="flex items-center gap-2 font-titulo text-xl text-lavanda group-hover:underline">
             {proximo.titulo}
-            <Icone nome="seta" />
           </span>
         </Link>
       </footer>

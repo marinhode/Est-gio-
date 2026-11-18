@@ -22,8 +22,8 @@ const fonteTitulo = Young_Serif({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Laboratório Sensorial Interativo · UniCatólica',
-    template: '%s · Laboratório Sensorial',
+    default: 'Laboratório Sensorial Interativo, UniCatólica',
+    template: '%s, Laboratório Sensorial',
   },
   description:
     'Plataforma educativa da horta do Laboratório Sensorial da UniCatólica: plantas, experiências sensoriais e ciência.',

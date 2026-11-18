@@ -17,10 +17,6 @@ export default async function Sentidos() {
   return (
     <div className="largura gutter grid gap-12 py-12">
       <header className="grid gap-4">
-        <p className="c-sinta flex items-center gap-2 font-bold">
-          <Icone nome="aroma" />
-          Estação Sentidos
-        </p>
         <h1 className="text-[2.3rem] sm:text-[2.8rem]">Experiências sensoriais</h1>
         <p className="leitura text-lg">
           Cheirar, tocar, observar e perceber o que isso desperta. Aqui não existe sensação certa: cada pessoa sente de um

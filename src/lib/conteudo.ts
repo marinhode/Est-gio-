@@ -19,7 +19,7 @@ function falhou(contexto: string, erro: unknown): never {
 // ───────────── Plantas e canteiros ─────────────
 
 type LinhaPlanta = {
-  slug: string; nome_popular: string; nome_cientifico: string; autor_taxon: string | null; familia: string
+  slug: string; tombo: number | null; nome_popular: string; nome_cientifico: string; autor_taxon: string | null; familia: string
   canteiro_id: string | null; categorias: string[]; caracteristicas: string[]; frase_impacto: string; resumo: string
   imagem_url: string | null; imagem_alt: string | null; imagem_credito: string | null
   conhecendo: Secao; cultivo: Secao; historia: Secao; experiencia: Secao; atividade: string; perguntas: string[]
@@ -34,6 +34,7 @@ export const SELECAO_PLANTA = '*, usos(nivel, texto, ordem), validacoes(nome, ar
 export function paraPlanta(l: LinhaPlanta): Planta {
   return {
     slug: l.slug,
+    tombo: l.tombo ?? undefined,
     nomePopular: l.nome_popular,
     nomeCientifico: l.nome_cientifico,
     autorTaxon: l.autor_taxon ?? undefined,

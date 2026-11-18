@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Icone } from '@/components/Icone'
 import { listarCanteiros, listarPlantas } from '@/lib/conteudo'
 
 export const metadata: Metadata = {
@@ -24,7 +23,6 @@ export default async function Mapa() {
   return (
     <div className="largura gutter grid gap-10 py-12">
       <header className="leitura grid gap-4">
-        <p className="flex items-center gap-2 font-bold text-folha"><Icone nome="mapa" />Mapa da horta</p>
         <h1 className="text-[2.3rem] sm:text-[2.8rem]">Onde fica cada planta</h1>
         <p className="text-lg">Toque em um canteiro para ver as plantas que estão nele. A lista abaixo do mapa traz as mesmas informações em texto.</p>
       </header>

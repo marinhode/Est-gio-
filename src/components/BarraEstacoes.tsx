@@ -60,7 +60,7 @@ export function BarraEstacoesBase({ caminho }: { caminho: string }) {
             const ativo = atual(i.href)
             return (
               <li key={i.href}>
-                <Link href={i.href} className="chip" aria-current={ativo ? 'page' : undefined}>
+                <Link href={i.href} className="aba" aria-current={ativo ? 'page' : undefined}>
                   <Icone nome={i.icone} className="size-[1.1em]" />
                   {i.rotulo}
                 </Link>

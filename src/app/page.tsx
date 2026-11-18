@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { Icone } from '@/components/Icone'
-import { RamoBotanico } from '@/components/RamoBotanico'
-import { Compartilhado } from '@/components/Transicao'
+import { PlacaCanteiro } from '@/components/PlacaCanteiro'
 import { obterCanteiro, obterPlanta } from '@/lib/conteudo'
 
 const caminhos = [
@@ -57,33 +56,7 @@ export default async function Inicio() {
           </div>
         </div>
 
-        {destaque && (
-          <Link
-            href={`/plantas/${destaque.slug}`}
-            transitionTypes={['nav-forward']}
-            className="group grid overflow-hidden rounded-md border border-linha bg-superficie text-tinta no-underline"
-          >
-            <Compartilhado nome={`planta-${destaque.slug}`}>
-              <div className="grid place-items-center bg-[color-mix(in_srgb,var(--folha)_9%,var(--superficie))] py-6">
-                <RamoBotanico className="h-44 w-auto" />
-              </div>
-            </Compartilhado>
-            <div className="grid gap-3 p-5">
-              <p className="nota">Planta em destaque</p>
-              <p>
-                <span className="block font-titulo text-2xl group-hover:underline">{destaque.nomePopular}</span>
-                <em className="cientifico text-suave">{destaque.nomeCientifico}</em>
-              </p>
-              <p className="curiosidade">{destaque.fraseImpacto}</p>
-              {canteiro && (
-                <p className="flex items-center gap-1.5 text-sm font-bold text-folha">
-                  <Icone nome="pino" className="size-4" />
-                  Canteiro {canteiro.numero}, {canteiro.nome.toLowerCase()}
-                </p>
-              )}
-            </div>
-          </Link>
-        )}
+        {destaque && <PlacaCanteiro planta={destaque} canteiro={canteiro} />}
       </section>
 
       {/* Uma planta, três caminhos */}

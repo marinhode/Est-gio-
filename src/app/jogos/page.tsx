@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Icone } from '@/components/Icone'
 import { listarJogos } from '@/lib/conteudo'
 
 export const metadata: Metadata = {
@@ -18,10 +17,6 @@ export default async function Jogos() {
   return (
     <div className="largura gutter grid gap-12 py-12">
       <header className="grid gap-4">
-        <p className="flex items-center gap-2 font-bold text-azul">
-          <Icone nome="jogos" />
-          Estação Jogos
-        </p>
         <h1 className="text-[2.3rem] sm:text-[2.8rem]">Jogos e desafios</h1>
         <p className="leitura text-lg">
           Teste o que você sabe e descubra o porquê de cada resposta. Dá para jogar sozinho ou projetar para a turma.
@@ -43,7 +38,6 @@ export default async function Jogos() {
               <span className="text-suave">{j.descricao}</span>
               <span className="mt-1 flex items-center gap-2 font-bold text-azul">
                 Jogar
-                <Icone nome="seta" />
               </span>
             </Link>
           </li>

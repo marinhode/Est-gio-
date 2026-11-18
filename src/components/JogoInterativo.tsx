@@ -199,7 +199,6 @@ export function JogoInterativo({ jogo }: { jogo: Jogo }) {
           )}
           <button type="button" className="btn justify-self-start" onClick={seguir}>
             {indice + 1 >= total ? 'Ver resultado' : mito ? 'Próxima afirmação' : 'Próxima pergunta'}
-            <Icone nome="seta" />
           </button>
         </div>
       )}

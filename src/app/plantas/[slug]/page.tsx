@@ -3,11 +3,10 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { AvisoExemplo } from '@/components/AvisoExemplo'
 import { Bloco } from '@/components/Bloco'
+import { Exsicata, tombo } from '@/components/Exsicata'
 import { Icone } from '@/components/Icone'
-import { ImagemRevelada } from '@/components/ImagemRevelada'
 import { Compartilhado } from '@/components/Transicao'
 import { PerguntaReflexiva } from '@/components/PerguntaReflexiva'
-import { RamoBotanico } from '@/components/RamoBotanico'
 import { TextoSecao } from '@/components/Secao'
 import { Selo } from '@/components/Selo'
 import { listarPlantas, obterCanteiro, obterPlanta } from '@/lib/conteudo'
@@ -33,31 +32,24 @@ export default async function Ficha({ params }: PageProps<'/plantas/[slug]'>) {
   return (
     <article className="pb-8">
       {/* Abertura: o que a pessoa vê ao escanear o QR */}
-      <header className="largura gutter grid gap-6 py-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:items-center md:py-12">
-        <Compartilhado nome={`planta-${planta.slug}`}>
-          <figure className="relative m-0 grid aspect-[4/3] place-items-center overflow-hidden rounded-md bg-[color-mix(in_srgb,var(--folha)_10%,var(--superficie))]">
-            {planta.imagem ? (
-              <ImagemRevelada src={planta.imagem.src} alt={planta.imagem.alt} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" priority />
-            ) : (
-              <RamoBotanico className="h-3/4 w-auto" />
-            )}
-            {planta.imagem?.credito && <figcaption className="absolute right-2 bottom-2 rounded bg-superficie/90 px-2 py-0.5 text-xs">{planta.imagem.credito}</figcaption>}
-          </figure>
-        </Compartilhado>
-        <div className="grid gap-4">
-          <Link href="/plantas" transitionTypes={['nav-back']} className="inline-flex min-h-11 items-center gap-2 font-bold no-underline hover:underline">
-            <Icone nome="livro" className="size-4" />
-            Enciclopédia de plantas
+      <header className="ficha-topo largura gutter py-8 md:py-14">
+        <div className="ficha-titulo grid gap-2">
+          <Link href="/plantas" transitionTypes={['nav-back']} className="justify-self-start text-sm">
+            Todas as plantas
           </Link>
-          <div className="grid gap-1">
-            <h1 className="text-[2.6rem] sm:text-[3.2rem]">{planta.nomePopular}</h1>
-            <p className="text-lg text-suave">
-              <em className="cientifico">{planta.nomeCientifico}</em>
-              {planta.autorTaxon && ` ${planta.autorTaxon}`}, família {planta.familia}
-            </p>
-          </div>
+          <h1 className="titulo-planta">{planta.nomePopular}</h1>
+          <p className="text-lg text-suave">
+            <em className="cientifico">{planta.nomeCientifico}</em>, família {planta.familia}
+          </p>
+        </div>
+        <div className="ficha-exsicata">
+          <Compartilhado nome={`planta-${planta.slug}`}>
+            <Exsicata planta={planta} canteiro={canteiro} prioridade />
+          </Compartilhado>
+        </div>
+        <div className="ficha-detalhes grid content-start gap-5">
           {canteiro && (
-            <Link href={`/mapa#canteiro-${canteiro.numero}`} className="inline-flex min-h-11 items-center gap-2 font-bold text-folha no-underline hover:underline">
+            <Link href={`/mapa#canteiro-${canteiro.numero}`} className="inline-flex min-h-11 items-center gap-2 justify-self-start font-bold text-folha no-underline hover:underline">
               <Icone nome="pino" className="size-5" />
               Canteiro {canteiro.numero}, {canteiro.nome.toLowerCase()}
             </Link>
@@ -152,35 +144,29 @@ export default async function Ficha({ params }: PageProps<'/plantas/[slug]'>) {
           )}
         </section>
 
-        {/* Etiqueta de herbário */}
-        <footer className="grid gap-8 md:grid-cols-2">
-          <aside aria-labelledby="t-etiqueta" className="grid content-start gap-3 border-[1.5px] border-tinta p-5">
-            <h2 id="t-etiqueta" className="border-b border-tinta pb-2 text-[1.1rem]">Herbário digital do Laboratório Sensorial</h2>
-            <dl className="grid grid-cols-[max-content_1fr] gap-x-4 gap-y-1.5 text-sm">
-              <dt className="text-suave">Família</dt><dd>{planta.familia}</dd>
-              <dt className="text-suave">Espécie</dt><dd><em>{planta.nomeCientifico}</em>{planta.autorTaxon && ` ${planta.autorTaxon}`}</dd>
-              <dt className="text-suave">Localização</dt><dd>{canteiro ? `Canteiro ${canteiro.numero}` : 'A definir'}</dd>
+        {/* Registro: quem validou, quando e com quais fontes */}
+        <footer className="grid items-start gap-4 md:grid-cols-2">
+          <Bloco titulo="Registro da ficha" nivel="h2">
+            <dl className="grid grid-cols-[max-content_1fr] gap-x-4 gap-y-1.5">
+              <dt className="text-suave">Tombo</dt><dd className="tabular-nums">{tombo(planta.tombo)}</dd>
               <dt className="text-suave">Validado por</dt>
               <dd>{planta.validacoes.length ? planta.validacoes.map((v) => `${v.nome} (${v.area}, ${data(v.data)})`).join('; ') : 'Aguardando validação'}</dd>
               <dt className="text-suave">Atualizado em</dt><dd>{data(planta.atualizadoEm)}</dd>
             </dl>
-          </aside>
-          <div className="grid content-start gap-4">
-            {planta.fontes.length > 0 && (
-              <section aria-labelledby="t-fontes" className="grid gap-2">
-                <h2 id="t-fontes" className="text-[1.15rem]">Fontes</h2>
-                <ul className="grid gap-2 text-sm">
-                  {planta.fontes.map((f) => (
-                    <li key={f.titulo}>
-                      {f.url ? <a href={f.url}>{f.titulo}</a> : f.titulo}
-                      {f.consultadoEm && <span className="text-suave"> Consultado em {data(f.consultadoEm)}.</span>}
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            )}
-            <p className="nota">Conteúdo educativo. Dúvidas sobre saúde ou uso de plantas medicinais devem ser levadas a um profissional habilitado.</p>
-          </div>
+            <p className="nota mt-2">Conteúdo educativo. Dúvidas sobre saúde ou uso de plantas medicinais devem ser levadas a um profissional habilitado.</p>
+          </Bloco>
+          {planta.fontes.length > 0 && (
+            <Bloco titulo="Fontes" nivel="h2">
+              <ul className="grid gap-2 text-sm">
+                {planta.fontes.map((f) => (
+                  <li key={f.titulo}>
+                    {f.url ? <a href={f.url}>{f.titulo}</a> : f.titulo}
+                    {f.consultadoEm && <span className="text-suave"> Consultado em {data(f.consultadoEm)}.</span>}
+                  </li>
+                ))}
+              </ul>
+            </Bloco>
+          )}
         </footer>
 
         {vizinhas.length > 0 && canteiro && (

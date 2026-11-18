@@ -36,7 +36,7 @@ async function Placas() {
       <ul className="placas">
         {placas.map(({ planta, url, svg, canteiro }) => (
           <li key={planta.slug} className="placa">
-            <p className="placa-lab">Laboratório Sensorial · UniCatólica</p>
+            <p className="placa-lab">Laboratório Sensorial, UniCatólica</p>
             <p className="placa-nome">{planta.nomePopular}</p>
             <p className="placa-cientifico"><em>{planta.nomeCientifico}</em></p>
             {canteiro && <p className="placa-canteiro">Canteiro {canteiro.numero}</p>}

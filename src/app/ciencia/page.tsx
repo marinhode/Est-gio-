@@ -111,10 +111,6 @@ export default function Ciencia() {
   return (
     <div className="largura gutter grid gap-16 py-12">
       <header className="leitura grid gap-4">
-        <p className="c-ciencia flex items-center gap-2 font-bold">
-          <Icone nome="frasco" />
-          Estação Ciência
-        </p>
         <h1 className="text-[2.3rem] sm:text-[2.8rem]">Ciência e aplicações</h1>
         <p className="text-lg">
           Sobre plantas medicinais circula muita coisa: receitas de família, promessas na internet, pesquisas sérias. Esta
@@ -186,7 +182,6 @@ export default function Ciencia() {
               {c.link && (
                 <Link href={c.link} className="mt-1 flex min-h-11 items-center gap-2 font-bold no-underline hover:underline">
                   Ir para a estação Sentidos
-                  <Icone nome="seta" />
                 </Link>
               )}
             </li>

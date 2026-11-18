@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { Icone } from '@/components/Icone'
 import { ListaProjetos } from '@/components/ListaProjetos'
 import { listarProjetos } from '@/lib/conteudo'
 
@@ -13,10 +12,6 @@ export default async function Comunidade() {
   return (
     <div className="largura gutter grid gap-10 py-12">
       <header className="leitura grid gap-4">
-        <p className="flex items-center gap-2 font-bold text-azul">
-          <Icone nome="pessoas" />
-          Estação Comunidade
-        </p>
         <h1 className="text-[2.3rem] sm:text-[2.8rem]">Comunidade e produção científica</h1>
         <p className="text-lg">
           O que os estudantes de Psicologia, Biomedicina, Farmácia e Engenharia de Software criam a partir da horta:

@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { AjustesLeitura } from '@/components/AjustesLeitura'
-import { Icone } from '@/components/Icone'
 
 export const metadata: Metadata = {
   title: 'Acessibilidade',
@@ -69,10 +68,6 @@ export default function Acessibilidade() {
   return (
     <div className="largura gutter grid gap-12 py-12">
       <header className="leitura grid gap-4">
-        <p className="flex items-center gap-2 font-bold text-azul">
-          <Icone nome="ok" />
-          Acessibilidade
-        </p>
         <h1 className="text-[2.3rem] sm:text-[2.8rem]">Um laboratório para todas as pessoas</h1>
         <p className="text-lg">
           A horta é para ser sentida de muitos jeitos, e o site também. Ele foi construído seguindo a WCAG 2.2, nível AA, a

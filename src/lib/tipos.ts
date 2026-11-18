@@ -47,6 +47,7 @@ export type Canteiro = {
 
 export type Planta = {
   slug: string
+  tombo?: number // número no herbário digital (LSI 0001)
   nomePopular: string
   nomeCientifico: string
   autorTaxon?: string

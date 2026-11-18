@@ -13,7 +13,6 @@ export default async function Tour() {
   return (
     <div className="largura gutter grid gap-10 py-12">
       <header className="leitura grid gap-4">
-        <p className="flex items-center gap-2 font-bold text-azul"><Icone nome="tour" />Estação Tour</p>
         <h1 className="text-[2.3rem] sm:text-[2.8rem]">Tour virtual pelo laboratório</h1>
         <p className="text-lg">
           Uma visita guiada em {paradas.length} paradas. Em cada uma, toque nos pontos destacados para conhecer canteiros e plantas.

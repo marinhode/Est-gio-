@@ -100,7 +100,6 @@ export function CenaTour({ parada }: { parada: ParadaTour }) {
                   <Link href={`/plantas/${aberto.planta}#${c.ancora}`} className={`alternativa ${c.cor} no-underline`}>
                     <Icone nome={c.icone as 'folha'} className="size-6" />
                     <span className="flex-1">{c.rotulo}</span>
-                    <Icone nome="seta" />
                   </Link>
                 </li>
               ))}

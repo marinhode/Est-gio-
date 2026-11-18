@@ -87,8 +87,7 @@ export default async function Parada({ params }: PageProps<'/tour/[ordem]'>) {
         <Link href="/mapa" className="btn btn-sec"><Icone nome="mapa" />Mapa da horta</Link>
         {proxima && (
           <Link href={`/tour/${proxima.ordem}`} transitionTypes={['nav-forward']} className="btn ml-auto">
-            Próxima: {proxima.titulo}
-            <Icone nome="seta" />
+            Próxima parada: {proxima.titulo}
           </Link>
         )}
       </nav>
