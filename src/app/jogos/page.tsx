@@ -16,9 +16,9 @@ export default async function Jogos() {
   const jogos = await listarJogos()
   return (
     <div className="largura gutter grid gap-12 py-12">
-      <header className="grid gap-4">
-        <h1 className="text-[2.3rem] sm:text-[2.8rem]">Jogos e desafios</h1>
-        <p className="leitura text-lg">
+      <header className="cabecalho-pagina">
+        <h1 className="titulo-pagina">Jogos e desafios</h1>
+        <p className="subtitulo">
           Teste o que você sabe e descubra o porquê de cada resposta. Dá para jogar sozinho ou projetar para a turma.
         </p>
       </header>
@@ -45,8 +45,8 @@ export default async function Jogos() {
       </ul>
 
       <section aria-labelledby="t-breve" className="grid gap-4">
-        <h2 id="t-breve" className="text-[1.35rem]">Em preparo</h2>
-        <p className="nota leitura">Estes jogos dependem da lista de plantas da horta e entram quando os canteiros estiverem definidos.</p>
+        <h2 id="t-breve" className="titulo-secao">Em preparo</h2>
+        <p className="subtitulo-secao">Estes jogos dependem da lista de plantas da horta e entram quando os canteiros estiverem definidos.</p>
         <ul className="grid gap-x-8 sm:grid-cols-2">
           {emBreve.map((j) => (
             <li key={j.titulo} className="grid gap-1 border-t border-dashed border-linha py-4">

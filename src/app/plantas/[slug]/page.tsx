@@ -187,7 +187,7 @@ export default async function Ficha({ params }: PageProps<'/plantas/[slug]'>) {
 
         {vizinhas.length > 0 && canteiro && (
           <section aria-labelledby="t-vizinhas" className="grid gap-4">
-            <h2 id="t-vizinhas" className="text-[1.4rem]">Também no canteiro {canteiro.numero}</h2>
+            <h2 id="t-vizinhas" className="titulo-secao">Também no canteiro {canteiro.numero}</h2>
             <ul className="flex flex-wrap gap-3">
               {vizinhas.map((v) => (
                 <li key={v.slug}><Link href={`/plantas/${v.slug}`} className="chip">{v.nomePopular}</Link></li>

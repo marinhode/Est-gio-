@@ -69,7 +69,7 @@ export function Diario() {
     <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,26rem)_minmax(0,1fr)]">
       {/* Novo registro */}
       <form onSubmit={guardar} className="grid gap-4 rounded-md border border-linha bg-superficie p-5 lg:sticky lg:top-24" noValidate>
-        <h2 className="text-[1.35rem]">Novo registro</h2>
+        <h2 className="bloco-titulo">Novo registro</h2>
 
         <div className="grid gap-1">
           <label htmlFor="d-sobre" className="font-bold">Sobre o quê?</label>
@@ -109,7 +109,7 @@ export function Diario() {
       {/* Registros */}
       <section aria-labelledby="t-registros" className="grid gap-4">
         <div className="flex flex-wrap items-baseline justify-between gap-3">
-          <h2 id="t-registros" className="text-[1.35rem]">
+          <h2 id="t-registros" className="bloco-titulo">
             Seus registros{pronto && registros.length > 0 && <span className="nota font-texto"> ({registros.length})</span>}
           </h2>
           {registros.length > 0 && (

@@ -22,9 +22,9 @@ export default async function Mapa() {
 
   return (
     <div className="largura gutter grid gap-10 py-12">
-      <header className="leitura grid gap-4">
-        <h1 className="text-[2.3rem] sm:text-[2.8rem]">Onde fica cada planta</h1>
-        <p className="text-lg">Toque em um canteiro para ver as plantas que estão nele. A lista abaixo do mapa traz as mesmas informações em texto.</p>
+      <header className="cabecalho-pagina">
+        <h1 className="titulo-pagina">Onde fica cada planta</h1>
+        <p className="subtitulo">Toque em um canteiro para ver as plantas que estão nele. A lista abaixo do mapa traz as mesmas informações em texto.</p>
       </header>
 
       {canteiros.length > 0 && (

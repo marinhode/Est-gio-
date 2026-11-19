@@ -72,7 +72,7 @@ body {
 }
 h1, h2, h3 { font-family: var(--font-titulo); font-weight: 400; line-height: 1.2; text-wrap: balance; }
 h1 { font-size: 2.1rem; }
-h2 { font-size: 1.6rem; }
+h2 { font-size: clamp(1.75rem, 4.8vw, 2.3rem); line-height: 1.1; letter-spacing: -.01em; }
 h3 { font-size: 1.2rem; }
 p { text-wrap: pretty; }
 a { color: var(--azul); text-decoration: underline; text-underline-offset: .18em; }
@@ -159,13 +159,23 @@ em, i, .cientifico { font-family: var(--fonte-italico), var(--font-texto); font-
 }
 .secao-ficha { scroll-margin-top: calc(var(--altura-barra) + 4.5rem); }
 
+/* ───────────── Escala de títulos ─────────────
+   Três degraus bem distintos (página, seção, bloco) e dois tipos de subtítulo. */
+.cabecalho-pagina { display: grid; gap: .9rem; padding-bottom: 1.75rem; border-bottom: 1px solid var(--linha); }
+.cabecalho-pagina > :not(h1) { max-width: 46rem; } /* a linha vai de ponta a ponta; o texto mantém a largura de leitura */
+.titulo-pagina { font-size: clamp(2.6rem, 8.5vw, 4.1rem); line-height: 1.02; letter-spacing: -.02em; }
+.subtitulo { font-size: clamp(1.15rem, 3.2vw, 1.35rem); line-height: 1.5; color: var(--suave); max-width: 40em; text-wrap: pretty; }
+.titulo-secao { font-size: clamp(1.75rem, 4.8vw, 2.3rem); line-height: 1.1; letter-spacing: -.01em; }
+.subtitulo-secao { font-size: 1.05rem; line-height: 1.55; color: var(--suave); max-width: 46em; }
+.cabecalho-secao { display: grid; gap: .45rem; }
+
 /* ───────────── Blocos de leitura ───────────── */
 .bloco {
   display: grid; align-content: start; gap: .6rem;
   background: var(--superficie); border: 1px solid var(--linha); border-radius: 4px;
   padding: 1.15rem 1.25rem 1.25rem;
 }
-.bloco-titulo { display: flex; align-items: center; gap: .5rem; font-family: var(--font-titulo); font-size: 1.2rem; line-height: 1.25; }
+.bloco-titulo { display: flex; align-items: center; gap: .5rem; font-family: var(--font-titulo); font-size: 1.3rem; line-height: 1.25; }
 .bloco p + p { margin-top: .35rem; }
 
 /* ───────────── Botões ───────────── */

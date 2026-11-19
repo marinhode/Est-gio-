@@ -110,9 +110,9 @@ const fontes = [
 export default function Ciencia() {
   return (
     <div className="largura gutter grid gap-16 py-12">
-      <header className="leitura grid gap-4">
-        <h1 className="text-[2.3rem] sm:text-[2.8rem]">Ciência e aplicações</h1>
-        <p className="text-lg">
+      <header className="cabecalho-pagina">
+        <h1 className="titulo-pagina">Ciência e aplicações</h1>
+        <p className="subtitulo">
           Sobre plantas medicinais circula muita coisa: receitas de família, promessas na internet, pesquisas sérias. Esta
           estação ajuda a separar uma coisa da outra e mostra como os cursos estudam as plantas da horta.
         </p>
@@ -123,7 +123,7 @@ export default function Ciencia() {
       <section aria-labelledby="t-caminho" className="grid gap-6">
         <div className="leitura grid gap-2">
           <h2 id="t-caminho">Do saber popular ao uso reconhecido</h2>
-          <p className="text-suave">
+          <p className="subtitulo-secao">
             Toda informação de uso neste site leva um destes quatro selos. Eles mostram em que ponto do caminho aquela
             informação está.
           </p>
@@ -159,7 +159,7 @@ export default function Ciencia() {
       <section aria-labelledby="t-cursos" className="grid gap-6">
         <div className="leitura grid gap-2">
           <h2 id="t-cursos">Uma planta, três olhares</h2>
-          <p className="text-suave">Cada curso faz uma pergunta diferente sobre a mesma espécie.</p>
+          <p className="subtitulo-secao">Cada curso faz uma pergunta diferente sobre a mesma espécie.</p>
         </div>
         <ul className="grid gap-5 md:grid-cols-3">
           {cursos.map((c) => (
@@ -197,7 +197,7 @@ export default function Ciencia() {
       <section aria-labelledby="t-metodos" className="grid gap-6">
         <div className="leitura grid gap-2">
           <h2 id="t-metodos">Como a ciência estuda uma planta</h2>
-          <p className="text-suave">
+          <p className="subtitulo-secao">
             O aroma de uma hortelã vem de óleos guardados em glândulas minúsculas na superfície da folha. Plantas produzem
             substâncias assim para se defender e atrair polinizadores, e são elas que interessam aos laboratórios.
           </p>
@@ -235,7 +235,7 @@ export default function Ciencia() {
       </section>
 
       <footer className="leitura grid gap-2 border-t border-linha pt-8">
-        <h2 className="text-[1.15rem]">Fontes</h2>
+        <h2 className="bloco-titulo">Fontes</h2>
         <ul className="grid gap-2 text-sm">
           {fontes.map((f) => (
             <li key={f.titulo}>

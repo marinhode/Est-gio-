@@ -76,7 +76,7 @@ export function AtividadeGuiada({
           <Icone nome="aroma" className="size-4" />
           Experimente ({duracaoTotal(passos)})
         </p>
-        <h2 id="t-atividade" className="text-[1.45rem]">{titulo}</h2>
+        <h2 id="t-atividade" className="bloco-titulo !text-[1.5rem]">{titulo}</h2>
         <p className="text-suave">{introducao}</p>
       </header>
 

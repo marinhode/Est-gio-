@@ -67,9 +67,9 @@ const limitacoes = [
 export default function Acessibilidade() {
   return (
     <div className="largura gutter grid gap-12 py-12">
-      <header className="leitura grid gap-4">
-        <h1 className="text-[2.3rem] sm:text-[2.8rem]">Um laboratório para todas as pessoas</h1>
-        <p className="text-lg">
+      <header className="cabecalho-pagina">
+        <h1 className="titulo-pagina">Um laboratório para todas as pessoas</h1>
+        <p className="subtitulo">
           A horta é para ser sentida de muitos jeitos, e o site também. Ele foi construído seguindo a WCAG 2.2, nível AA, a
           referência internacional de acessibilidade para a web, em computadores e celulares.
         </p>
@@ -148,7 +148,7 @@ export default function Acessibilidade() {
 
         {/* Verificação */}
         <aside aria-labelledby="t-verificacao" className="grid gap-3 rounded-md border-2 border-azul bg-superficie p-6 lg:sticky lg:top-24">
-          <h2 id="t-verificacao" className="text-[1.3rem]">Última verificação</h2>
+          <h2 id="t-verificacao" className="bloco-titulo">Última verificação</h2>
           <p className="font-titulo text-[2.6rem] leading-none text-azul">
             {auditoria.falhas === 0 ? 'Nenhuma falha' : `${auditoria.falhas} falhas`}
           </p>
@@ -161,7 +161,7 @@ export default function Acessibilidade() {
       </div>
 
       <section aria-labelledby="t-barreira" className="leitura grid gap-3 border-t border-linha pt-8">
-        <h2 id="t-barreira" className="text-[1.4rem]">Encontrou uma barreira?</h2>
+        <h2 id="t-barreira" className="titulo-secao">Encontrou uma barreira?</h2>
         <p>
           Se alguma parte do site for difícil de usar, conte para a equipe do Laboratório Sensorial durante a sua visita.
           Toda dificuldade relatada ajuda a melhorar o laboratório para todos.

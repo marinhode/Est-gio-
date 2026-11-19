@@ -83,7 +83,7 @@ export function CenaTour({ parada }: { parada: ParadaTour }) {
         {aberto?.planta && (
           <div className="grid gap-4">
             <div className="flex items-start justify-between gap-4">
-              <h2 id="t-janela" className="text-[1.6rem]">{aberto.rotulo}</h2>
+              <h2 id="t-janela" className="bloco-titulo !text-[1.6rem]">{aberto.rotulo}</h2>
               <button type="button" className="btn btn-sec !min-h-10 !px-3" onClick={() => janela.current?.close()}>
                 <Icone nome="fechar" />
                 <span className="sr-only">Fechar</span>

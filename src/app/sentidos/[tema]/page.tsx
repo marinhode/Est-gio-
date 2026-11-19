@@ -25,14 +25,14 @@ export default async function Tema({ params }: PageProps<'/sentidos/[tema]'>) {
 
   return (
     <article className="largura gutter grid gap-10 py-10">
-      <header className="leitura grid gap-4">
+      <header className="cabecalho-pagina">
         <nav aria-label="Você está em">
           <Link href="/sentidos" transitionTypes={['nav-back']} className="text-sm">
             Todos os temas
           </Link>
         </nav>
-        <h1 className="text-[2.1rem] sm:text-[2.6rem]">{tema.titulo}</h1>
-        <p className="text-lg">{tema.resumo}</p>
+        <h1 className="titulo-pagina">{tema.titulo}</h1>
+        <p className="subtitulo">{tema.resumo}</p>
         {tema.exemplo && <AvisoExemplo />}
       </header>
 
@@ -59,7 +59,7 @@ export default async function Tema({ params }: PageProps<'/sentidos/[tema]'>) {
       <footer className="grid gap-8 border-t border-linha pt-8">
         {tema.fontes.length > 0 && (
           <section aria-labelledby="t-fontes" className="leitura grid gap-2">
-            <h2 id="t-fontes" className="text-[1.15rem]">Fontes</h2>
+            <h2 id="t-fontes" className="bloco-titulo">Fontes</h2>
             <ul className="grid gap-2 text-sm">
               {tema.fontes.map((f) => (
                 <li key={f.titulo}>

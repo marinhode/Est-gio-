@@ -40,8 +40,8 @@ export default async function Inicio() {
       {/* Abertura */}
       <section className="largura gutter grid items-center gap-10 py-12 md:grid-cols-[1.25fr_1fr] md:py-16">
         <div className="grid gap-5">
-          <h1 className="text-[2.4rem] sm:text-[3rem]">Uma horta para descobrir com todos os sentidos</h1>
-          <p className="leitura text-lg">
+          <h1 className="titulo-pagina">Uma horta para descobrir com todos os sentidos</h1>
+          <p className="subtitulo">
             O Laboratório Sensorial reúne plantas, pessoas e ciência. Aqui você conhece cada espécie da horta, faz atividades
             de percepção e descobre o que a pesquisa sabe sobre ela, na visita presencial ou de onde estiver.
           </p>
@@ -64,7 +64,7 @@ export default async function Inicio() {
         <div className="largura gutter grid gap-8 py-12">
           <div className="grid gap-2">
             <h2 id="t-caminhos">Uma planta, três caminhos</h2>
-            <p className="leitura text-suave">
+            <p className="subtitulo-secao">
               Escaneie o QR Code de um canteiro ou escolha uma planta no site. Cada espécie se abre em três caminhos.
             </p>
           </div>
@@ -84,7 +84,7 @@ export default async function Inicio() {
       <section aria-labelledby="t-cursos" className="largura gutter grid gap-6 py-14">
         <div className="grid gap-2">
           <h2 id="t-cursos">Quem faz o laboratório</h2>
-          <p className="leitura text-suave">Quatro cursos olham para a mesma planta, cada um com suas perguntas.</p>
+          <p className="subtitulo-secao">Quatro cursos olham para a mesma planta, cada um com suas perguntas.</p>
         </div>
         <dl className="grid items-start gap-4 sm:grid-cols-2">
           {cursos.map((c) => (

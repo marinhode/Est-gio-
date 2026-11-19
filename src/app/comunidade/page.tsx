@@ -11,9 +11,9 @@ export default async function Comunidade() {
   const projetos = await listarProjetos()
   return (
     <div className="largura gutter grid gap-10 py-12">
-      <header className="leitura grid gap-4">
-        <h1 className="text-[2.3rem] sm:text-[2.8rem]">Comunidade e produção científica</h1>
-        <p className="text-lg">
+      <header className="cabecalho-pagina">
+        <h1 className="titulo-pagina">Comunidade e produção científica</h1>
+        <p className="subtitulo">
           O que os estudantes de Psicologia, Biomedicina, Farmácia e Engenharia de Software criam a partir da horta:
           pesquisas, produtos, vídeos e atividades de extensão.
         </p>

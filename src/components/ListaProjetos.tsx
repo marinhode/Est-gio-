@@ -29,7 +29,7 @@ export function ListaProjetos({ projetos }: { projetos: Projeto[] }) {
               <span className="font-bold">{p.curso}</span>
               {p.ano && <span className="text-suave">{p.ano}</span>}
             </p>
-            <h2 className="text-[1.4rem]">{p.titulo}</h2>
+            <h2 className="bloco-titulo">{p.titulo}</h2>
             <p className="text-suave">{p.descricao}</p>
             {p.link && (
               <p>

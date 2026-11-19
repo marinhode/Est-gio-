@@ -11,9 +11,9 @@ export default async function Plantas() {
   const [plantas, canteiros] = await Promise.all([listarPlantas(), listarCanteiros()])
   return (
     <div className="largura gutter grid gap-8 py-12">
-      <header className="leitura grid gap-4">
-        <h1 className="text-[2.3rem] sm:text-[2.8rem]">Enciclopédia de plantas</h1>
-        <p className="text-lg">Cada espécie da horta, com o que ela é, o que desperta nos sentidos e o que a ciência sabe sobre ela.</p>
+      <header className="cabecalho-pagina">
+        <h1 className="titulo-pagina">Enciclopédia de plantas</h1>
+        <p className="subtitulo">Cada espécie da horta, com o que ela é, o que desperta nos sentidos e o que a ciência sabe sobre ela.</p>
       </header>
       <Catalogo plantas={plantas} canteiros={canteiros} />
     </div>

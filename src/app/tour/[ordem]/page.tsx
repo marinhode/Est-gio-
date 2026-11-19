@@ -61,7 +61,7 @@ export default async function Parada({ params }: PageProps<'/tour/[ordem]'>) {
         <div className="grid gap-5">
           <div className="grid gap-2">
             <p className="nota">Parada {parada.ordem} de {paradas.length}</p>
-            <h1 className="text-[2.1rem] sm:text-[2.5rem]">{parada.titulo}</h1>
+            <h1 className="titulo-pagina !text-[clamp(2.2rem,5vw,3rem)]">{parada.titulo}</h1>
           </div>
           <p className="text-lg">{parada.texto}</p>
           {parada.exemplo && <AvisoExemplo />}

@@ -12,9 +12,9 @@ export default async function Tour() {
   const paradas = await listarParadas()
   return (
     <div className="largura gutter grid gap-10 py-12">
-      <header className="leitura grid gap-4">
-        <h1 className="text-[2.3rem] sm:text-[2.8rem]">Tour virtual pelo laboratório</h1>
-        <p className="text-lg">
+      <header className="cabecalho-pagina">
+        <h1 className="titulo-pagina">Tour virtual pelo laboratório</h1>
+        <p className="subtitulo">
           Uma visita guiada em {paradas.length} paradas. Em cada uma, toque nos pontos destacados para conhecer canteiros e plantas.
         </p>
         <div className="flex flex-wrap gap-3">

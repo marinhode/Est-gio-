@@ -20,14 +20,14 @@ export default async function PaginaJogo({ params }: PageProps<'/jogos/[jogo]'>)
 
   return (
     <div className="largura gutter grid gap-8 py-10">
-      <header className="leitura grid gap-4">
+      <header className="cabecalho-pagina">
         <nav aria-label="Você está em">
           <Link href="/jogos" transitionTypes={['nav-back']} className="text-sm">
             Todos os jogos
           </Link>
         </nav>
-        <h1 className="text-[2.1rem] sm:text-[2.6rem]">{jogo.titulo}</h1>
-        <p className="text-lg">{jogo.descricao}</p>
+        <h1 className="titulo-pagina">{jogo.titulo}</h1>
+        <p className="subtitulo">{jogo.descricao}</p>
         {jogo.exemplo && <AvisoExemplo />}
       </header>
       <div className="max-w-3xl">
