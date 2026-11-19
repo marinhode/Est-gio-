@@ -77,6 +77,9 @@ h3 { font-size: 1.2rem; }
 p { text-wrap: pretty; }
 a { color: var(--azul); text-decoration: underline; text-underline-offset: .18em; }
 em, i, .cientifico { font-family: var(--fonte-italico), var(--font-texto); font-style: italic; }
+/* Itálico dentro de títulos serifados mantém a fonte do título; o autor do nome científico fica em pé */
+:is(h1, h2, h3, h4, .font-titulo, .bloco-titulo, .etiqueta-nome, .placa-nome-popular) :is(em, i) { font-family: inherit; }
+:is(em, i) .not-italic { font-family: var(--font-texto); }
 :focus-visible { outline: 3px solid var(--foco); outline-offset: 3px; border-radius: 4px; }
 ::selection { background: var(--destaque); color: var(--sobre-destaque); }
 
@@ -315,7 +318,7 @@ textarea.campo { min-height: 6rem; resize: vertical; }
 @keyframes vt-desliza { from { translate: var(--desloca) 0; } to { translate: 0 0; } }
 @keyframes vt-desfoca { 40% { filter: blur(3px); } }
 
-/* Imagens: entram com fade, leve zoom e desfoque se dissolvendo */
+/* Imagens: entram com fade e um zoom leve (sem desfoque, que pesa no celular) */
 .revela { opacity: 0; transform: scale(1.03); }
 .revela[data-carregada="true"] { opacity: 1; transform: none; }
 

@@ -4,7 +4,7 @@ import Image, { type ImageProps } from 'next/image'
 import { useCallback, useState } from 'react'
 
 /**
- * next/image que entra com fade, leve zoom e desfoque se dissolvendo ao terminar de carregar.
+ * next/image que entra com fade e um zoom leve ao terminar de carregar.
  * Se a foto já estava no cache (carregou antes do React), aparece direto, sem ficar invisível.
  */
 export function ImagemRevelada({ className = '', onLoad, alt, ...props }: ImageProps) {
