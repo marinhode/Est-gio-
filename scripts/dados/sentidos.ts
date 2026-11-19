@@ -1,5 +1,5 @@
 /** Fonte da carga inicial do banco (scripts/gerar-semente.ts). O site lê do Supabase, não deste arquivo. */
-import type { TemaSensorial } from '@/lib/tipos'
+import type { TemaSensorial } from '../../src/lib/tipos.ts'
 
 /**
  * Conteúdos de Psicologia da estação Sentidos (orientação 3.2).

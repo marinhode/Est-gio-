@@ -1,5 +1,5 @@
 /** Fonte da carga inicial do banco (scripts/gerar-semente.ts). O site lê do Supabase, não deste arquivo. */
-import type { Jogo } from '@/lib/tipos'
+import type { Jogo } from '../../src/lib/tipos.ts'
 
 /**
  * Jogos que não dependem das plantas da horta.

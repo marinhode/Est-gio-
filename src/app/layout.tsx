@@ -6,16 +6,27 @@ import { Cabecalho, CabecalhoBase } from '@/components/Cabecalho'
 import { Rodape } from '@/components/Rodape'
 import './globals.css'
 
+// Só o subconjunto 'latin': cobre todos os acentos e o ç do português
 const fonteTexto = Atkinson_Hyperlegible_Next({
-  subsets: ['latin', 'latin-ext'],
-  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  style: 'normal',
   variable: '--fonte-texto',
   fallback: ['Segoe UI', 'system-ui', 'sans-serif'],
   adjustFontFallback: false,
 })
 
+// Itálico só aparece nos nomes científicos: carrega quando usado, sem preload
+const fonteItalico = Atkinson_Hyperlegible_Next({
+  subsets: ['latin'],
+  style: 'italic',
+  variable: '--fonte-italico',
+  preload: false,
+  fallback: ['Segoe UI', 'system-ui', 'sans-serif'],
+  adjustFontFallback: false,
+})
+
 const fonteTitulo = Young_Serif({
-  subsets: ['latin', 'latin-ext'],
+  subsets: ['latin'],
   weight: '400',
   variable: '--fonte-titulo',
 })
@@ -38,7 +49,7 @@ const preferencias = `(function(){try{var d=document.documentElement;if(localSto
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
-    <html lang="pt-BR" className={`${fonteTexto.variable} ${fonteTitulo.variable}`} suppressHydrationWarning>
+    <html lang="pt-BR" className={`${fonteTexto.variable} ${fonteItalico.variable} ${fonteTitulo.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: preferencias }} />
       </head>

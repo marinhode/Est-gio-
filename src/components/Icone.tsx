@@ -60,9 +60,7 @@ const caminhos = {
       <path d="m15 15 5 5" />
     </>
   ),
-  menu: <path d="M4 7h16M4 12h16M4 17h16" />,
   fechar: <path d="M6 6l12 12M18 6 6 18" />,
-  seta: <path d="M5 12h14M13 6l6 6-6 6" />,
 } as const
 
 export type NomeIcone = keyof typeof caminhos

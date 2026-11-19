@@ -1,11 +1,11 @@
 /**
- * Gera supabase/semente.sql a partir dos dados de exemplo em src/lib/dados.
+ * Gera supabase/semente.sql a partir dos dados de exemplo em scripts/dados.
  * Uso: node --experimental-strip-types scripts/gerar-semente.ts > supabase/semente.sql
  */
 import { writeSync } from 'node:fs'
-import { canteiros, plantas } from '../src/lib/dados/exemplo.ts'
-import { jogos } from '../src/lib/dados/jogos.ts'
-import { temas } from '../src/lib/dados/sentidos.ts'
+import { canteiros, plantas } from './dados/exemplo.ts'
+import { jogos } from './dados/jogos.ts'
+import { temas } from './dados/sentidos.ts'
 
 const dados = {
   canteiros: canteiros.map((c) => ({ id: c.id, numero: c.numero, nome: c.nome, descricao: c.descricao })),

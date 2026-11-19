@@ -6,7 +6,7 @@ import { useRef, useState, useTransition } from 'react'
 import { type DadosPlanta, type ErroCampo, excluirPlanta, salvarPlanta } from '@/app/admin/plantas/acoes'
 import { CampoArea, CampoSecao, CampoTexto, GrupoFicha, Repetidor, ResumoErros } from '@/components/admin/campos'
 import { NIVEIS } from '@/components/Selo'
-import { clienteNavegador } from '@/lib/supabase/navegador'
+import { enviarArquivo } from '@/lib/upload'
 import { paraEndereco } from '@/lib/formulario-planta'
 import type { Area, Canteiro, NivelEvidencia } from '@/lib/tipos'
 
@@ -57,26 +57,14 @@ export function EditorPlanta({ inicial, slugOriginal, canteiros, editor }: {
   }
 
   async function enviarFoto(arquivo: File) {
-    if (!['image/jpeg', 'image/png', 'image/webp'].includes(arquivo.type)) {
-      setErros([{ campo: 'foto', mensagem: 'Use uma foto em JPG, PNG ou WebP.' }])
-      return
-    }
-    if (arquivo.size > 5 * 1024 * 1024) {
-      setErros([{ campo: 'foto', mensagem: 'A foto passa de 5 MB. Reduza o tamanho e tente de novo.' }])
-      return
-    }
     setEnviandoFoto(true)
-    const extensao = arquivo.name.split('.').pop()?.toLowerCase() ?? 'jpg'
-    const caminho = `plantas/${d.slug || 'nova'}-${Date.now()}.${extensao}`
-    const supabase = clienteNavegador()
-    const { error } = await supabase.storage.from('midias').upload(caminho, arquivo, { cacheControl: '31536000' })
+    const r = await enviarArquivo(arquivo, `plantas/${d.slug || 'nova'}`, ['image/jpeg', 'image/png', 'image/webp'], 5)
     setEnviandoFoto(false)
-    if (error) {
-      setErros([{ campo: 'foto', mensagem: `Não foi possível enviar a foto (${error.message}).` }])
-      return
+    if ('erro' in r) setErros([{ campo: 'foto', mensagem: r.erro }])
+    else {
+      mudar('imagemUrl', r.url)
+      setErros([])
     }
-    mudar('imagemUrl', supabase.storage.from('midias').getPublicUrl(caminho).data.publicUrl)
-    setErros([])
   }
 
   function excluir() {
