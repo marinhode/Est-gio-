@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { AvisoExemplo } from '@/components/AvisoExemplo'
+import { BarraCaminhos } from '@/components/BarraCaminhos'
 import { Bloco } from '@/components/Bloco'
 import { Exsicata, tombo } from '@/components/Exsicata'
 import { Icone } from '@/components/Icone'
@@ -60,31 +61,22 @@ export default async function Ficha({ params }: PageProps<'/plantas/[slug]'>) {
         </div>
       </header>
 
-      {/* Os três caminhos */}
-      <nav aria-label="Três caminhos desta planta" className="caminhos-ficha">
-        <ul className="largura grid grid-cols-3">
-          {[
-            { href: '#conheca', rotulo: 'Conheça', icone: 'folha', cor: 'c-conheca' },
-            { href: '#sinta', rotulo: 'Sinta', icone: 'aroma', cor: 'c-sinta' },
-            { href: '#ciencia', rotulo: 'Ciência', icone: 'frasco', cor: 'c-ciencia' },
-          ].map((c) => (
-            <li key={c.href}>
-              <a href={c.href} className={`${c.cor} flex min-h-14 flex-col items-center justify-center gap-0.5 border-b-4 border-transparent font-bold no-underline hover:border-current`}>
-                <Icone nome={c.icone as 'folha'} />
-                {c.rotulo}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
+      <BarraCaminhos />
 
-      <div className="largura gutter grid gap-14 pt-10">
-        <section id="conheca" aria-labelledby="t-conheca" className="secao-ficha grid gap-5">
-          <h2 id="t-conheca" className="c-conheca flex items-center gap-2"><Icone nome="folha" className="size-7" />Conheça a planta</h2>
+      {/* Conheça: o que a planta é */}
+      <section id="conheca" aria-labelledby="t-conheca" className="caminho-banda" data-caminho="conheca">
+        <div className="largura gutter grid gap-6">
+          <header className="caminho-cabeca">
+            <span className="caminho-icone"><Icone nome="folha" className="size-8" /></span>
+            <div>
+              <h2 id="t-conheca">Conheça a planta</h2>
+              <p>Como ela é, como se cultiva e que histórias carrega.</p>
+            </div>
+          </header>
           <div className="grid items-start gap-4 md:grid-cols-2 lg:grid-cols-3">
-            <Bloco titulo="Como ela é" icone="folha" cor="text-folha"><TextoSecao secao={planta.conhecendo} sobre="como ela é" /></Bloco>
-            <Bloco titulo="Cultivo e sustentabilidade" icone="folha" cor="text-folha"><TextoSecao secao={planta.cultivo} sobre="cultivo" /></Bloco>
-            <Bloco titulo="História e cultura" icone="livro" cor="text-folha"><TextoSecao secao={planta.historia} sobre="história e cultura" /></Bloco>
+            <Bloco titulo="Como ela é"><TextoSecao secao={planta.conhecendo} sobre="como ela é" /></Bloco>
+            <Bloco titulo="Cultivo e sustentabilidade"><TextoSecao secao={planta.cultivo} sobre="cultivo" /></Bloco>
+            <Bloco titulo="História e cultura"><TextoSecao secao={planta.historia} sobre="história e cultura" /></Bloco>
           </div>
           {(planta.categorias.length > 0 || planta.caracteristicas.length > 0) && (
             <Bloco titulo="Características">
@@ -95,13 +87,23 @@ export default async function Ficha({ params }: PageProps<'/plantas/[slug]'>) {
               </ul>
             </Bloco>
           )}
-        </section>
+          <a href="#sinta" className="caminho-seguir" data-caminho="sinta">Seguir para: Explore a experiência sensorial</a>
+        </div>
+      </section>
 
-        <section id="sinta" aria-labelledby="t-sinta" className="secao-ficha grid gap-6">
-          <h2 id="t-sinta" className="c-sinta flex items-center gap-2"><Icone nome="aroma" className="size-7" />Explore a experiência sensorial</h2>
+      {/* Sinta: a experiência sensorial */}
+      <section id="sinta" aria-labelledby="t-sinta" className="caminho-banda" data-caminho="sinta">
+        <div className="largura gutter grid gap-6">
+          <header className="caminho-cabeca">
+            <span className="caminho-icone"><Icone nome="aroma" className="size-8" /></span>
+            <div>
+              <h2 id="t-sinta">Explore a experiência sensorial</h2>
+              <p>Cheire, toque, observe. Aqui não existe resposta certa.</p>
+            </div>
+          </header>
           <div className="grid items-start gap-4 md:grid-cols-2">
-            <Bloco titulo="O que se percebe" icone="aroma" cor="text-lavanda"><TextoSecao secao={planta.experiencia} sobre="a experiência sensorial" /></Bloco>
-            <div className="grid gap-2 rounded-[10px] border-2 border-lavanda bg-superficie p-5">
+            <Bloco titulo="O que se percebe"><TextoSecao secao={planta.experiencia} sobre="a experiência sensorial" /></Bloco>
+            <div className="grid gap-2 rounded-[4px] border-2 border-lavanda bg-superficie p-5">
               <p className="c-sinta font-bold">Experimente</p>
               <p className="text-lg">{planta.atividade}</p>
             </div>
@@ -110,40 +112,54 @@ export default async function Ficha({ params }: PageProps<'/plantas/[slug]'>) {
             {planta.perguntas.map((p) => (
               <PerguntaReflexiva key={p} pergunta={p} sobre={planta.nomePopular} planta={planta.slug} />
             ))}
-            <Bloco titulo="Psicologia e bem-estar" icone="pessoas" cor="text-lavanda"><TextoSecao secao={planta.psicologia} sobre="psicologia e bem-estar" /></Bloco>
+            <Bloco titulo="Psicologia e bem-estar"><TextoSecao secao={planta.psicologia} sobre="psicologia e bem-estar" /></Bloco>
           </div>
-        </section>
+          <a href="#ciencia" className="caminho-seguir" data-caminho="ciencia">Seguir para: Descubra o que a ciência pesquisa</a>
+        </div>
+      </section>
 
-        <section id="ciencia" aria-labelledby="t-ciencia" className="secao-ficha leitura grid gap-6">
-          <h2 id="t-ciencia" className="c-ciencia flex items-center gap-2"><Icone nome="frasco" className="size-7" />Descubra o que a ciência pesquisa</h2>
-          {planta.usos.length > 0 ? (
-            <ul className="grid gap-3">
-              {planta.usos.map((u) => (
-                <li key={u.texto} className="bloco">
-                  <Selo nivel={u.nivel} />
-                  <p>{u.texto}</p>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p className="text-suave">Ainda não há usos cadastrados para esta planta.</p>
-          )}
-          <p className="nota"><Link href="/ciencia">O que significa cada selo?</Link></p>
-          {planta.biomedicina && <Bloco titulo="Biomedicina" icone="frasco" cor="text-ciencia"><TextoSecao secao={planta.biomedicina} sobre="biomedicina" /></Bloco>}
-          {planta.farmacia && <Bloco titulo="Farmácia" icone="frasco" cor="text-ciencia"><TextoSecao secao={planta.farmacia} sobre="farmácia" /></Bloco>}
-          {planta.alertas && (
-            <div className="grid gap-2 rounded-md border-2 border-tinta p-4">
-              <h3>Alertas de segurança</h3>
-              <TextoSecao secao={planta.alertas} sobre="alertas de segurança" />
+      {/* Ciência: o que se sabe e com que nível de evidência */}
+      <section id="ciencia" aria-labelledby="t-ciencia" className="caminho-banda" data-caminho="ciencia">
+        <div className="largura gutter grid gap-6">
+          <header className="caminho-cabeca">
+            <span className="caminho-icone"><Icone nome="frasco" className="size-8" /></span>
+            <div>
+              <h2 id="t-ciencia">Descubra o que a ciência pesquisa</h2>
+              <p>O que é uso popular, o que tem evidência e o que ainda é pergunta.</p>
             </div>
-          )}
-          {cienciaPreparo && (
-            <p className="rounded border-l-4 border-linha bg-superficie px-4 py-3 text-suave">
-              Composição, usos farmacêuticos e alertas de segurança estão em preparação pelas equipes de Biomedicina e Farmácia.
-            </p>
-          )}
-        </section>
+          </header>
+          <div className="leitura grid gap-4">
+            {planta.usos.length > 0 ? (
+              <ul className="grid gap-3">
+                {planta.usos.map((u) => (
+                  <li key={u.texto} className="bloco">
+                    <Selo nivel={u.nivel} />
+                    <p>{u.texto}</p>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-suave">Ainda não há usos cadastrados para esta planta.</p>
+            )}
+            <p className="nota"><Link href="/ciencia">O que significa cada selo?</Link></p>
+            {planta.biomedicina && <Bloco titulo="Biomedicina"><TextoSecao secao={planta.biomedicina} sobre="biomedicina" /></Bloco>}
+            {planta.farmacia && <Bloco titulo="Farmácia"><TextoSecao secao={planta.farmacia} sobre="farmácia" /></Bloco>}
+            {planta.alertas && (
+              <div className="grid gap-2 rounded-[4px] border-2 border-tinta bg-superficie p-4">
+                <h3>Alertas de segurança</h3>
+                <TextoSecao secao={planta.alertas} sobre="alertas de segurança" />
+              </div>
+            )}
+            {cienciaPreparo && (
+              <p className="rounded-[4px] bg-superficie px-4 py-3 text-suave">
+                Composição, usos farmacêuticos e alertas de segurança estão em preparação pelas equipes de Biomedicina e Farmácia.
+              </p>
+            )}
+          </div>
+        </div>
+      </section>
 
+      <div className="largura gutter grid gap-14 pt-12">
         {/* Registro: quem validou, quando e com quais fontes */}
         <footer className="grid items-start gap-4 md:grid-cols-2">
           <Bloco titulo="Registro da ficha" nivel="h2">

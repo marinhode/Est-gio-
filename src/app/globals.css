@@ -518,3 +518,36 @@ textarea.campo { min-height: 6rem; resize: vertical; }
   -webkit-user-drag: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
 }
 .trilho { touch-action: pan-x pan-y; overscroll-behavior-x: contain; overscroll-behavior-y: none; }
+
+/* ═════════════ Os três caminhos da ficha: cada um é uma faixa com cor própria ═════════════ */
+[data-caminho="conheca"] { --cor: var(--folha); }
+[data-caminho="sinta"] { --cor: var(--lavanda); }
+[data-caminho="ciencia"] { --cor: var(--ciencia); }
+
+.caminho-banda {
+  background: color-mix(in srgb, var(--cor) 8%, var(--papel));
+  border-top: 6px solid var(--cor);
+  padding-block: 2.5rem 3rem;
+  scroll-margin-top: calc(var(--altura-barra) + 3.5rem);
+}
+.caminho-banda + .caminho-banda { margin-top: 0; }
+.caminho-cabeca { display: flex; align-items: center; gap: 1rem; }
+.caminho-cabeca h2 { color: var(--cor); font-size: clamp(1.8rem, 5.5vw, 2.6rem); }
+.caminho-cabeca p { color: var(--suave); margin-top: .2rem; }
+.caminho-icone { flex: none; display: grid; place-items: center; width: 3.75rem; height: 3.75rem; border-radius: 50%; background: var(--cor); color: var(--sobre-folha); }
+.caminho-seguir {
+  justify-self: start; display: inline-flex; align-items: center; min-height: 48px; padding: .6rem 1.1rem; margin-top: .5rem;
+  border: 2px solid var(--cor); border-radius: 6px; color: var(--cor); font-weight: 700; text-decoration: none; background: var(--superficie);
+}
+.caminho-seguir:hover { background: var(--cor); color: var(--sobre-folha); }
+
+/* Barra fixa: a aba do caminho que está na tela fica preenchida com a cor dele */
+.caminho-aba {
+  display: flex; min-height: 3.5rem; flex-direction: column; align-items: center; justify-content: center; gap: .1rem;
+  color: var(--cor); font-weight: 700; text-decoration: none; box-shadow: inset 0 -4px 0 color-mix(in srgb, var(--cor) 25%, transparent);
+}
+.caminho-aba:hover { box-shadow: inset 0 -4px 0 var(--cor); }
+.caminho-aba[aria-current="location"] { background: var(--cor); color: var(--sobre-folha); box-shadow: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .caminho-aba { transition: background-color 250ms ease-out, color 250ms ease-out; }
+}
